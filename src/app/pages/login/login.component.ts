@@ -8,6 +8,7 @@ import { MatCardModule } from '@angular/material/card';
 import { HttpClient } from '@angular/common/http';
 import { Router, RouterModule } from '@angular/router';
 import { LoginRes } from '../../model/login_res';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -48,6 +49,13 @@ export class LoginComponent implements OnInit {
     console.log(localStorage.getItem('uid'));
     if (temp.message == 'Login successful') {
       this.router.navigate(['/']);
+    } else {
+      Swal.fire({
+        title: 'Error',
+        text: 'Invalid username or password',
+        icon: 'error',
+        confirmButtonText: 'Try Again',
+      });
     }
   }
 }

@@ -37,7 +37,12 @@ export class RegisterComponent implements OnInit {
     avatarURL: HTMLInputElement
   ) {
     if (password.value !== confirmPassword.value) {
-      Swal.fire('Error', 'Passwords do not match', 'error');
+      Swal.fire({
+        title: 'Error',
+        text: 'Passwords do not match',
+        icon: 'error',
+        confirmButtonText: 'Try Again',
+      });
     } else {
       const body = {
         username: userName.value,
