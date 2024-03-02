@@ -1,0 +1,13 @@
+<app-header></app-header>
+<div class="container mt-5">
+  <mat-card class="w-100 p-5">
+    <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+      <div class="col" *ngFor="let item of demo">
+        <div class="border border-black p-2 text-center">
+          <span>{{ item.i }} Shin Chan</span>
+          <img class="mt-2" src="../../../assets/img/top.png" alt="" />
+        </div>
+      </div>
+    </div>
+  </mat-card>
+</div>

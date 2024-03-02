@@ -1,0 +1,32 @@
+<div class="d-flex justify-content-center align-items-center w-100 h-100">
+  <mat-card class="w-25 p-5 text-center">
+    <h1 class="mb-4 fw-bold">Register</h1>
+    <mat-form-field appearance="outline" class="w-100 dense-3" color="accent">
+      <mat-label>UserName</mat-label>
+      <input #userName matInput required />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="w-100 dense-3" color="accent">
+      <mat-label>Password</mat-label>
+      <input #password matInput required />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="w-100 dense-3" color="accent">
+      <mat-label>Confirm password</mat-label>
+      <input #confirmPassword matInput required />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="w-100 dense-3" color="accent">
+      <mat-label>AvatarURL</mat-label>
+      <input #avatarURL matInput required />
+    </mat-form-field>
+    <button
+      mat-raised-button
+      color="accent"
+      class="w-100"
+      (click)="register(userName, password, confirmPassword, avatarURL)"
+    >
+      Sign-Up
+    </button>
+    <span class="text-start mt-2"
+      >Do you have an account? <a routerLink="/login">Log-in</a></span
+    >
+  </mat-card>
+</div>

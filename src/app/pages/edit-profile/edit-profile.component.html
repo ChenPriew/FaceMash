@@ -1,0 +1,93 @@
+<mat-tab-group color="accent">
+  <mat-tab label="Update Profile">
+    <div
+      class="container mt-5 d-flex justify-content-center align-items-center"
+    >
+      <mat-card style="width: 30% !important" class="w-25 p-5 text-center mt-5">
+        <h1 class="mb-4 fw-bold">Update Data</h1>
+        <mat-form-field
+          appearance="outline"
+          class="w-100 dense-3"
+          color="accent"
+        >
+          <mat-label>UserName</mat-label>
+          <input #userName matInput required />
+        </mat-form-field>
+        <mat-form-field
+          appearance="outline"
+          class="w-100 dense-3"
+          color="accent"
+        >
+          <mat-label>AvatarURL</mat-label>
+          <input #avatarURL matInput required />
+        </mat-form-field>
+        <mat-form-field
+          appearance="outline"
+          class="w-100 dense-3"
+          color="accent"
+        >
+          <mat-label>Enter Password to Update</mat-label>
+          <input #password matInput required />
+        </mat-form-field>
+        <button
+          mat-raised-button
+          color="accent"
+          class="w-100"
+          (click)="update(userName, avatarURL, password)"
+        >
+          Update
+        </button>
+        <button
+          routerLink="/profile"
+          class="w-100 mt-2"
+          mat-raised-button
+          color="warn"
+        >
+          Cancle
+        </button>
+      </mat-card>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="Change Password"
+    ><div
+      class="container mt-5 d-flex justify-content-center align-items-center"
+    >
+      <mat-card style="width: 30% !important" class="w-25 p-5 text-center mt-5">
+        <h1 class="mb-4 fw-bold">Change Password</h1>
+        <mat-form-field
+          appearance="outline"
+          class="w-100 dense-3"
+          color="accent"
+        >
+          <mat-label>Old Password</mat-label>
+          <input #old_password matInput required />
+        </mat-form-field>
+        <mat-form-field
+          appearance="outline"
+          class="w-100 dense-3"
+          color="accent"
+        >
+          <mat-label>New Password</mat-label>
+          <input #new_password matInput required />
+        </mat-form-field>
+        <button
+          mat-raised-button
+          color="accent"
+          class="w-100"
+          (click)="changePassword(old_password, new_password)"
+        >
+          Update
+        </button>
+        <button
+          routerLink="/profile"
+          class="w-100 mt-2"
+          mat-raised-button
+          color="warn"
+        >
+          Cancle
+        </button>
+      </mat-card>
+    </div></mat-tab
+  >
+</mat-tab-group>

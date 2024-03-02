@@ -1,0 +1,33 @@
+<div class="d-flex justify-content-center align-items-center w-100 h-100">
+  <mat-card class="w-25 p-5 text-center">
+    <h1 class="mb-4 fw-bold">Log-In</h1>
+    <mat-form-field appearance="outline" class="w-100 dense-3" color="accent">
+      <mat-label>UserName</mat-label>
+      <input #userName matInput placeholder="Placeholder" required />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="w-100 dense-3" color="accent">
+      <mat-label>Enter your password</mat-label>
+      <input #password matInput [type]="hide ? 'password' : 'text'" required />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hide = !hide"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide"
+      >
+        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
+    </mat-form-field>
+    <button
+      mat-raised-button
+      color="accent"
+      class="w-100"
+      (click)="login(userName, password)"
+    >
+      Log-In
+    </button>
+    <span class="text-start mt-2"
+      >You don't have an account? <a routerLink="/register">Register</a></span
+    >
+  </mat-card>
+</div>
