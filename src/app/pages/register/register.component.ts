@@ -31,10 +31,10 @@ export class RegisterComponent implements OnInit {
   }
 
   async register(
+    disName: HTMLInputElement,
     userName: HTMLInputElement,
     password: HTMLInputElement,
-    confirmPassword: HTMLInputElement,
-    avatarURL: HTMLInputElement
+    confirmPassword: HTMLInputElement
   ) {
     if (password.value !== confirmPassword.value) {
       Swal.fire({
@@ -45,14 +45,17 @@ export class RegisterComponent implements OnInit {
       });
     } else {
       const body = {
+        display_name: disName.value,
         username: userName.value,
         password: password.value,
-        avatarURL: avatarURL.value,
       };
       let temp = (await this.userService.postRegister(body)) as LoginRes;
       if (temp.message == 'User created successfully') {
-        Swal.fire('Success', 'Log-In Now', 'success');
-        this.router.navigate(['/login']);
+        Swal.fire('Success', 'Log-in Now', 'success').then((result) => {
+          if (result.isConfirmed) {
+            this.router.navigate(['/login']);
+          }
+        });
       }
     }
   }

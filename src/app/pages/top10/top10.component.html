@@ -2,10 +2,22 @@
 <div class="container mt-5">
   <mat-card class="w-100 p-5">
     <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-      <div class="col" *ngFor="let item of demo">
-        <div class="border border-black p-2 text-center">
-          <span>{{ item.i }} Shin Chan</span>
-          <img class="mt-2" src="../../../assets/img/top.png" alt="" />
+      <div class="col" *ngFor="let item of top10; let i = index">
+        <div
+          style="height: 20rem"
+          class="border border-black p-2 d-flex flex-column text-center"
+        >
+          <div>
+            <span>{{ i + 1 }} UID: {{ item.UserID }}</span>
+          </div>
+          <div style="height: 85%" class="mt-2 w-100">
+            <img
+              style="object-fit: cover"
+              class="w-100 h-100"
+              src="{{ item.ImageURL }}"
+              alt=""
+            />
+          </div>
         </div>
       </div>
     </div>

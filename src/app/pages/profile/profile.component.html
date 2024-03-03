@@ -4,10 +4,16 @@
   <div class="border border-black p-5">
     <div class="row">
       <div class="col-4">
-        <img src="../../../assets/img/avatar.png" alt="" />
+        <div style="width: 200px; height: 200px">
+          <img
+            class="w-100 h-100 rounded-circle"
+            src="{{ user.AvatarURL }}"
+            alt=""
+          />
+        </div>
       </div>
       <div class="col-8">
-        <span class="fw-bold fs-3">Shin Chan</span>
+        <span class="fw-bold fs-3">{{ user.display_name }}</span>
         <br />
         <button routerLink="/edit_profile" class="mt-2" mat-stroked-button>
           EditProfile
@@ -16,69 +22,43 @@
     </div>
     <hr class="my-5" />
     <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3 text-center">
-      <div class="col">
+      <div *ngFor="let item of userImg" class="col">
         <div class="p-3">
-          <img class="w-100" src="../../../assets/img/red.png" alt="" />
-          <div class="d-flex align-items-center justify-content-center">
-            <mat-icon
-              aria-hidden="false"
-              fontIcon="favorite"
-              color="accent"
-            ></mat-icon>
-            <span>12</span>
+          <div *ngIf="item; else elseBlock">
+            <div
+              style="height: 18rem"
+              class="w-100 border border-2 border-black p-2"
+            >
+              <img
+                style="object-fit: cover"
+                class="w-100 h-100"
+                src="{{ item.ImageURL }}"
+                alt=""
+              />
+            </div>
+            <div class="d-flex align-items-center justify-content-center mt-2">
+              <mat-icon
+                aria-hidden="false"
+                fontIcon="favorite"
+                color="accent"
+              ></mat-icon>
+              <span>{{ item.EloScore }}</span>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="p-3">
-          <img class="w-100" src="../../../assets/img/red.png" alt="" />
-          <div class="d-flex align-items-center justify-content-center">
-            <mat-icon
-              aria-hidden="false"
-              fontIcon="favorite"
-              color="accent"
-            ></mat-icon>
-            <span>12</span>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="p-3">
-          <img class="w-100" src="../../../assets/img/red.png" alt="" />
-          <div class="d-flex align-items-center justify-content-center">
-            <mat-icon
-              aria-hidden="false"
-              fontIcon="favorite"
-              color="accent"
-            ></mat-icon>
-            <span>12</span>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="p-3">
-          <img class="w-100" src="../../../assets/img/red.png" alt="" />
-          <div class="d-flex align-items-center justify-content-center">
-            <mat-icon
-              aria-hidden="false"
-              fontIcon="favorite"
-              color="accent"
-            ></mat-icon>
-            <span>12</span>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="p-3">
-          <img class="w-100" src="../../../assets/img/red.png" alt="" />
-          <div class="d-flex align-items-center justify-content-center">
-            <mat-icon
-              aria-hidden="false"
-              fontIcon="favorite"
-              color="accent"
-            ></mat-icon>
-            <span>12</span>
-          </div>
+          <ng-template #elseBlock>
+            <div
+              style="height: 18rem"
+              class="w-100 border border-2 border-black d-flex justify-content-center align-items-center"
+            >
+              <div
+                (click)="uploadImg()"
+                style="height: 50px; width: 50px; cursor: pointer"
+                class="d-flex justify-content-center align-items-center border border-black rounded-circle"
+              >
+                <mat-icon fontIcon="add"></mat-icon>
+              </div>
+            </div>
+          </ng-template>
         </div>
       </div>
     </div>

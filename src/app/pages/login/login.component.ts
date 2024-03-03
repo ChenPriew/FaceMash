@@ -38,15 +38,12 @@ export class LoginComponent implements OnInit {
   }
 
   async login(userName: HTMLInputElement, password: HTMLInputElement) {
-    console.log(userName.value + ' ' + password.value);
-
     const body = {
       username: userName.value,
       password: password.value,
     };
     let temp = (await this.userService.postLogin(body)) as LoginRes;
     localStorage.setItem('uid', JSON.stringify(temp.userId));
-    console.log(localStorage.getItem('uid'));
     if (temp.message == 'Login successful') {
       this.router.navigate(['/']);
     } else {
