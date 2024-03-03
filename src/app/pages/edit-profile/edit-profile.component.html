@@ -10,16 +10,16 @@
           class="w-100 dense-3"
           color="accent"
         >
-          <mat-label>UserName</mat-label>
-          <input #userName matInput required />
+          <mat-label>DisplayName</mat-label>
+          <input #displayName matInput required />
         </mat-form-field>
         <mat-form-field
           appearance="outline"
           class="w-100 dense-3"
           color="accent"
         >
-          <mat-label>AvatarURL</mat-label>
-          <input #avatarURL matInput required />
+          <mat-label>UserName</mat-label>
+          <input #userName matInput required />
         </mat-form-field>
         <mat-form-field
           appearance="outline"
@@ -33,7 +33,7 @@
           mat-raised-button
           color="accent"
           class="w-100"
-          (click)="update(userName, avatarURL, password)"
+          (click)="update(displayName, userName, password)"
         >
           Update
         </button>

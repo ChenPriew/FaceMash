@@ -25,7 +25,6 @@ export class MainComponent implements OnInit {
 
   ngOnInit(): void {
     this.uid = localStorage.getItem('uid');
-    console.log(this.uid);
 
     document.body.className = 'main';
     this.loadRanImg();
@@ -35,8 +34,6 @@ export class MainComponent implements OnInit {
     const temp = (await this.userService.getRanImg()) as RandomImgRes[];
     this.img1 = temp[0];
     this.img2 = temp[1];
-
-    console.log(this.img1, this.img2);
   }
 
   async vote(winImg: any, loseImg: any) {
@@ -46,6 +43,8 @@ export class MainComponent implements OnInit {
         winImageID: winImg,
         loseImageID: loseImg,
       };
+      console.log(body);
+
       let temp = (await this.userService.vote(body)) as VoteRes;
       if (temp.message == 'Vote recorded successfully') {
         Swal.fire('Success', 'Vote Success', 'success').then((result) => {

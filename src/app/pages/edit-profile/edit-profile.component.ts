@@ -35,10 +35,12 @@ export class EditProfileComponent implements OnInit {
   }
 
   update(
+    displayName: HTMLInputElement,
     userName: HTMLInputElement,
-    avatarURL: HTMLInputElement,
     password: HTMLInputElement
   ) {
-    console.log(userName.value + ' ' + avatarURL.value + ' ' + password.value);
+    console.log(
+      displayName.value + ' ' + userName.value + ' ' + password.value
+    );
   }
 }

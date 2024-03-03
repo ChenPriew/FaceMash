@@ -4,13 +4,14 @@ import { HeaderComponent } from '../../componemt/header/header.component';
 import { MatCard } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 import { TopReted } from '../../model/top_reted_res';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-top10',
   standalone: true,
   templateUrl: './top10.component.html',
   styleUrl: './top10.component.scss',
-  imports: [HeaderComponent, MatCard, CommonModule],
+  imports: [HeaderComponent, MatCard, CommonModule, MatIcon],
 })
 export class Top10Component implements OnInit {
   top10: TopReted[] = [];

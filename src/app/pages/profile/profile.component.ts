@@ -47,10 +47,23 @@ export class ProfileComponent implements OnInit {
     for (let i = 0; i < temp.userImages.length; i++) {
       this.userImg[i] = temp.userImages[i];
     }
-    console.log(this.userImg);
   }
 
-  uploadImg() {
-    console.log(true);
+  uploadImg($event: Event) {
+    const fileInput = $event.target as HTMLInputElement;
+    const file: File = (fileInput.files as FileList)[0];
+    if (file) {
+      console.log('Selected file:', file);
+      // You can now upload the file or perform other operations
+    }
+  }
+
+  changeAvatar($event: Event) {
+    const fileInput = $event.target as HTMLInputElement;
+    const file: File = (fileInput.files as FileList)[0];
+    if (file) {
+      console.log('Selected file:', file);
+      // You can now upload the file or perform other operations
+    }
   }
 }
