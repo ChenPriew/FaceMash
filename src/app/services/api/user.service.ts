@@ -34,7 +34,7 @@ export class UserService {
       return response as LoginRes;
     } catch (error) {
       console.error('An error occurred:', error);
-      return throwError('Something went wrong. Please try again later.');
+      throw error;
     }
   }
 

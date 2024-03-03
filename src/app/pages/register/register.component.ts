@@ -49,13 +49,36 @@ export class RegisterComponent implements OnInit {
         username: userName.value,
         password: password.value,
       };
-      let temp = (await this.userService.postRegister(body)) as LoginRes;
-      if (temp.message == 'User created successfully') {
-        Swal.fire('Success', 'Log-in Now', 'success').then((result) => {
-          if (result.isConfirmed) {
-            this.router.navigate(['/login']);
-          }
-        });
+      try {
+        let temp = (await this.userService.postRegister(body)) as LoginRes;
+        if (temp.message == 'User created successfully') {
+          Swal.fire('Success', 'Log-in Now', 'success').then((result) => {
+            if (result.isConfirmed) {
+              this.router.navigate(['/login']);
+            }
+          });
+        }
+      } catch (error: any) {
+        console.log(error); // ดูค่า error ที่ได้รับมาใน console
+        if (
+          error &&
+          error.error &&
+          error.error.error === 'Username already exists'
+        ) {
+          Swal.fire({
+            title: 'Error',
+            text: 'Username already exists',
+            icon: 'error',
+            confirmButtonText: 'OK',
+          });
+        } else {
+          Swal.fire({
+            title: 'Error',
+            text: 'An error occurred',
+            icon: 'error',
+            confirmButtonText: 'OK',
+          });
+        }
       }
     }
   }
