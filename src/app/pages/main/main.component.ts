@@ -22,7 +22,7 @@ export class MainComponent implements OnInit {
   uid: any;
   isLoad = true;
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
     this.uid = localStorage.getItem('uid');
@@ -37,9 +37,10 @@ export class MainComponent implements OnInit {
     const temp = (await this.userService.getRanImg()) as RandomImgRes[];
     this.img1 = temp[0];
     this.img2 = temp[1];
-    if (temp) {
+    if (temp && temp.length >= 2) {
       this.isLoad = false;
     }
+
   }
 
   async vote(winImg: any, loseImg: any) {
@@ -65,10 +66,12 @@ export class MainComponent implements OnInit {
       } else {
         Swal.fire({
           title: 'Error',
-          text: 'You can not vote for duplicate photos',
+          text: 'Cooldown active. Cannot vote for the same ImageID within 5 seconds.',
           icon: 'error',
-          confirmButtonText: 'Try Again Later',
+          timer: 5000, // Set the timer to 5000 milliseconds (5 seconds)
+          showConfirmButton: false, // Hide the "OK" button
         });
+
       }
     } else {
       Swal.fire({
