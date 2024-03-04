@@ -26,8 +26,23 @@ export class HeaderComponent {
   constructor(private router: Router) {}
 
   logout() {
-    localStorage.removeItem('uid');
-    location.reload();
+    Swal.fire({
+      title: 'Log-out Confirmation',
+      text: 'Are you sure you want to log-out?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Log-out',
+      cancelButtonText: 'Cancel',
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        // Handle deletion logic here
+        localStorage.removeItem('uid');
+        location.reload();
+      } else {
+        // Handle cancellation logic here
+        console.log('Log-Out cancelled');
+      }
+    });
   }
 
   proFile() {
