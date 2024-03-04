@@ -45,6 +45,7 @@ export class ProfileComponent implements OnInit {
   }
 
   async loadUserImg(id: any) {
+    this.userImg = new Array(5);
     const temp = (await this.userService.getImgUser(id)) as UserImgRes;
     for (let i = 0; i < temp.userImages.length; i++) {
       this.userImg[i] = temp.userImages[i];
@@ -97,5 +98,48 @@ export class ProfileComponent implements OnInit {
         }
       );
     }
+  }
+
+  hoverStates: { [key: number]: boolean } = {};
+
+  toggleHoverState(index: number): void {
+    this.hoverStates[index] = !this.hoverStates[index];
+  }
+
+  changeImg(event: Event): void {
+    const fileInput = event.target as HTMLInputElement;
+    const file: File = (fileInput.files as FileList)[0];
+    if (file) {
+      // Perform any necessary logic with the selected file
+      console.log('Selected file:', file);
+    }
+  }
+  deleteImg(ImageID: any) {
+    Swal.fire({
+      title: 'Delete Confirmation',
+      text: 'Are you sure you want to delete?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Delete',
+      cancelButtonText: 'Cancel',
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        // Handle deletion logic here
+        console.log('Delete confirmed');
+        const temp = await this.userService.deleteImg(ImageID);
+        console.log(temp);
+        if (temp.message == 'Image deleted successfully') {
+          Swal.fire('Success', 'Delete Sucess', 'success').then((result) => {
+            if (result.isConfirmed) {
+              this.loadUser(this.uid);
+              this.loadUserImg(this.uid);
+            }
+          });
+        }
+      } else {
+        // Handle cancellation logic here
+        console.log('Delete cancelled');
+      }
+    });
   }
 }

@@ -45,16 +45,17 @@ export class MainComponent implements OnInit {
   async vote(winImg: any, loseImg: any) {
     if (localStorage.getItem('uid')) {
       const body = {
-        voterID: this.uid,
-        winImageID: winImg,
-        loseImageID: loseImg,
+        VoterID: Number(this.uid), // Assuming this.uid is a string representing a number
+        WinImageID: Number(winImg), // Assuming winImg is a string representing a number
+        LoseImageID: Number(loseImg), // Assuming loseImg is a string representing a number
       };
+
       console.log(body);
 
       let temp = (await this.userService.vote(body)) as VoteRes;
       console.log(temp);
 
-      if (temp.message == 'Vote recorded successfully') {
+      if (temp.message == 'Vote successfully recorded') {
         Swal.fire('Success', 'Vote Success', 'success').then((result) => {
           if (result.isConfirmed) {
             this.isLoad = true;

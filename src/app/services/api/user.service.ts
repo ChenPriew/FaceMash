@@ -7,6 +7,7 @@ import { RandomImgRes } from '../../model/ran_img_res';
 import { TopReted } from '../../model/top_reted_res';
 import { UserRes } from '../../model/user_res';
 import { UserImgRes } from '../../model/user_img_res';
+import { VoteRes } from '../../model/vote_res';
 
 @Injectable({
   providedIn: 'root',
@@ -49,9 +50,10 @@ export class UserService {
 
     try {
       const response = await lastValueFrom(this.http.post(url, options));
-      return response;
+      return response as VoteRes;
     } catch (error) {
       console.error('An error occurred:', error);
+      console.log('Full error response:', error);
       return throwError('Something went wrong. Please try again later.');
     }
   }
@@ -90,5 +92,11 @@ export class UserService {
     formData.append('id', userId); // Append the user ID to the form data
 
     return this.http.post(url, formData);
+  }
+
+  public async deleteImg(id: any) {
+    const url = this.constants.API_ENDPOINT + '/deleteImage/' + id;
+    const response = await lastValueFrom(this.http.delete(url));
+    return response as VoteRes;
   }
 }

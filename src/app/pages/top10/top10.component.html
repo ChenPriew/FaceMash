@@ -1,14 +1,25 @@
 <app-header></app-header>
 <div class="container mt-5">
-  <mat-card style="height: 46rem" class="w-100 p-5 shadow-lg">
+  <mat-card
+    style="
+      height: 46rem;
+      background-image: url(https://i.pinimg.com/564x/88/0a/99/880a99db5b5ab6dd5ba615a2dadefddf.jpg);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+    "
+    class="w-100 p-5 shadow-lg"
+  >
     <div *ngIf="!isLoad" class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
       <div class="col" *ngFor="let item of top10; let i = index">
         <div
           style="height: 20rem"
-          class="border border-black p-2 d-flex flex-column text-center"
+          class="border border-black p-2 d-flex flex-column text-center shadow-lg bg-white"
         >
           <div>
-            <span class="fw-bold">{{ i + 1 }}: {{ item.display_name }}</span>
+            <span class="fw-bold"
+              >{{ i + 1 }}: {{ item.display_name }}'s Image</span
+            >
           </div>
           <div style="height: 75%" class="my-2 w-100">
             <img
