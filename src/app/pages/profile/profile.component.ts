@@ -8,6 +8,7 @@ import { UserRes } from '../../model/user_res';
 import { UserImage, UserImgRes } from '../../model/user_img_res';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-profile',
@@ -20,6 +21,14 @@ import Swal from 'sweetalert2';
     MatButtonModule,
     RouterModule,
     CommonModule,
+  ],
+  animations: [
+    trigger('slideInBottom', [
+      transition(':enter', [
+        style({ transform: 'translateY(100%)' }),
+        animate('300ms ease-in', style({ transform: 'translateY(0%)' })),
+      ]),
+    ]),
   ],
 })
 export class ProfileComponent implements OnInit {

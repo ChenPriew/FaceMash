@@ -5,6 +5,7 @@ import { MatCard } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 import { TopReted } from '../../model/top_reted_res';
 import { MatIcon } from '@angular/material/icon';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-top10',
@@ -12,6 +13,14 @@ import { MatIcon } from '@angular/material/icon';
   templateUrl: './top10.component.html',
   styleUrl: './top10.component.scss',
   imports: [HeaderComponent, MatCard, CommonModule, MatIcon],
+  animations: [
+    trigger('slideInBottom', [
+      transition(':enter', [
+        style({ transform: 'translateY(100%)' }),
+        animate('300ms ease-in', style({ transform: 'translateY(0%)' })),
+      ]),
+    ]),
+  ],
 })
 export class Top10Component implements OnInit {
   top10: TopReted[] = [];
