@@ -73,4 +73,22 @@ export class UserService {
     const response = await lastValueFrom(this.http.get(url));
     return response as UserImgRes;
   }
+
+  public uploadAvatar(file: File, userId: any) {
+    const formData = new FormData();
+    const url = this.constants.API_ENDPOINT + '/uploadAvatar';
+    formData.append('123', file); // Use the correct field name here
+    formData.append('userId', userId); // Append the user ID to the form data
+
+    return this.http.post(url, formData);
+  }
+
+  public uploadImg(file: File, userId: any) {
+    const formData = new FormData();
+    const url = this.constants.API_ENDPOINT + '/upload';
+    formData.append('123', file); // Use the correct field name here
+    formData.append('id', userId); // Append the user ID to the form data
+
+    return this.http.post(url, formData);
+  }
 }

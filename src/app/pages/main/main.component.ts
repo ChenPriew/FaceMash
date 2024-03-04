@@ -20,6 +20,7 @@ export class MainComponent implements OnInit {
   img1: any;
   img2: any;
   uid: any;
+  isLoad = true;
 
   constructor(private userService: UserService, private router: Router) {}
 
@@ -31,9 +32,14 @@ export class MainComponent implements OnInit {
   }
 
   async loadRanImg() {
+    this.img1 = new Array();
+    this.img2 = new Array();
     const temp = (await this.userService.getRanImg()) as RandomImgRes[];
     this.img1 = temp[0];
     this.img2 = temp[1];
+    if (temp) {
+      this.isLoad = false;
+    }
   }
 
   async vote(winImg: any, loseImg: any) {
@@ -46,17 +52,21 @@ export class MainComponent implements OnInit {
       console.log(body);
 
       let temp = (await this.userService.vote(body)) as VoteRes;
+      console.log(temp);
+
       if (temp.message == 'Vote recorded successfully') {
         Swal.fire('Success', 'Vote Success', 'success').then((result) => {
           if (result.isConfirmed) {
-            location.reload();
+            this.isLoad = true;
+            this.loadRanImg();
           }
         });
       } else {
         Swal.fire({
           title: 'Error',
+          text: 'You can not vote for duplicate photos',
           icon: 'error',
-          confirmButtonText: 'Try Again',
+          confirmButtonText: 'Try Again Later',
         });
       }
     } else {

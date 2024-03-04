@@ -3,13 +3,13 @@
 <div
   class="container d-flex justify-content-center align-items-center mt-5 w-100"
 >
-  <mat-card class="w-100 p-5">
+  <mat-card style="height: 45rem" class="w-100 p-5 shadow-lg">
     <h2 class="fw-bold mb-4 text-center">Vote Page</h2>
-    <div class="row text-center">
+    <div *ngIf="!isLoad" class="row text-center">
       <div class="col-4">
         <div style="height: 30rem" class="border border-black">
           <img
-            style="object-fit: cover"
+            style="object-fit: cover; object-position: center"
             class="w-100 h-100"
             [src]="img1.ImageURL"
             alt=""
@@ -34,7 +34,7 @@
       <div class="col-4">
         <div style="height: 30rem" class="border border-black">
           <img
-            style="object-fit: cover"
+            style="object-fit: cover; object-position: center"
             class="w-100 h-100"
             [src]="img2.ImageURL"
             alt=""
@@ -51,6 +51,15 @@
           </button>
         </div>
       </div>
+    </div>
+    <div
+      *ngIf="isLoad"
+      class="d-flex justify-content-center align-items-center h-100"
+    >
+      <img
+        src="https://i.pinimg.com/originals/49/af/20/49af2056717bdc97ea295b1329ad294b.gif"
+        alt=""
+      />
     </div>
   </mat-card>
 </div>

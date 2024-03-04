@@ -25,6 +25,7 @@ import Swal from 'sweetalert2';
   styleUrl: './register.component.scss',
 })
 export class RegisterComponent implements OnInit {
+  hide = true;
   constructor(private userService: UserService, private router: Router) {}
   ngOnInit(): void {
     document.body.className = 'register';

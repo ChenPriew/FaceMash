@@ -15,6 +15,7 @@ import { MatIcon } from '@angular/material/icon';
 })
 export class Top10Component implements OnInit {
   top10: TopReted[] = [];
+  isLoad = true;
 
   constructor(private userService: UserService) {}
 
@@ -26,6 +27,8 @@ export class Top10Component implements OnInit {
   async loadTopReted() {
     const temp = (await this.userService.getTopRated()) as TopReted[];
     this.top10 = temp;
-    console.log(this.top10);
+    if (temp) {
+      this.isLoad = false;
+    }
   }
 }

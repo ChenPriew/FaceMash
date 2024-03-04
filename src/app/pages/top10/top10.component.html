@@ -1,7 +1,7 @@
 <app-header></app-header>
 <div class="container mt-5">
-  <mat-card class="w-100 p-5">
-    <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+  <mat-card style="height: 46rem" class="w-100 p-5 shadow-lg">
+    <div *ngIf="!isLoad" class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
       <div class="col" *ngFor="let item of top10; let i = index">
         <div
           style="height: 20rem"
@@ -12,7 +12,7 @@
           </div>
           <div style="height: 75%" class="my-2 w-100">
             <img
-              style="object-fit: cover"
+              style="object-fit: cover; object-position: center"
               class="w-100 h-100"
               [src]="item.ImageURL"
               alt=""
@@ -28,6 +28,15 @@
           </div>
         </div>
       </div>
+    </div>
+    <div
+      *ngIf="isLoad"
+      class="d-flex justify-content-center align-items-center h-100"
+    >
+      <img
+        src="https://i.pinimg.com/originals/49/af/20/49af2056717bdc97ea295b1329ad294b.gif"
+        alt=""
+      />
     </div>
   </mat-card>
 </div>
