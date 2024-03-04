@@ -8,7 +8,7 @@
           class="border border-black p-2 d-flex flex-column text-center"
         >
           <div>
-            <span>{{ i + 1 }} {{ item.display_name }}</span>
+            <span class="fw-bold">{{ i + 1 }}: {{ item.display_name }}</span>
           </div>
           <div style="height: 75%" class="my-2 w-100">
             <img
@@ -24,7 +24,7 @@
               fontIcon="favorite"
               color="accent"
             ></mat-icon>
-            <span>{{ item.EloScore }}</span>
+            <span class="fw-semibold">{{ item.EloScore }}</span>
           </div>
         </div>
       </div>
