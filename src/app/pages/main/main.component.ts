@@ -8,6 +8,7 @@ import { VoteRes } from '../../model/vote_res';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-main',
@@ -15,6 +16,20 @@ import { CommonModule } from '@angular/common';
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss',
   imports: [MatCardModule, MatButtonModule, HeaderComponent, CommonModule],
+  animations: [
+    trigger('slideInLeft', [
+      transition(':enter', [
+        style({ transform: 'translateX(-100%)' }),
+        animate('300ms ease-in', style({ transform: 'translateX(0%)' })),
+      ]),
+    ]),
+    trigger('slideInRight', [
+      transition(':enter', [
+        style({ transform: 'translateX(100%)' }),
+        animate('300ms ease-in', style({ transform: 'translateX(0%)' })),
+      ]),
+    ]),
+  ],
 })
 export class MainComponent implements OnInit {
   img1: any;
@@ -22,7 +37,7 @@ export class MainComponent implements OnInit {
   uid: any;
   isLoad = true;
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService, private router: Router) {}
 
   ngOnInit(): void {
     this.uid = localStorage.getItem('uid');
@@ -40,7 +55,6 @@ export class MainComponent implements OnInit {
     if (temp && temp.length >= 2) {
       this.isLoad = false;
     }
-
   }
 
   async vote(winImg: any, loseImg: any) {
@@ -71,7 +85,6 @@ export class MainComponent implements OnInit {
           timer: 5000, // Set the timer to 5000 milliseconds (5 seconds)
           showConfirmButton: false, // Hide the "OK" button
         });
-
       }
     } else {
       Swal.fire({
