@@ -36,6 +36,9 @@
 }
 
 @media (max-width: 770px) {
+  .row {
+    align-items: center;
+  }
   .col-4,
   .col-8 {
     width: 50% !important;
@@ -47,10 +50,6 @@
 }
 
 @media (max-width: 500px) {
-  .col-4,
-  .col-8 {
-    width: 50% !important;
-  }
   .avatar {
     width: 120px !important;
     height: 120px !important;
