@@ -1,12 +1,15 @@
 <app-header></app-header>
 
 <div
-  class="container d-flex justify-content-center align-items-center mt-5 w-100 joti-one-regular"
+  class="container d-flex justify-content-center align-items-center my-5 w-100 joti-one-regular"
 >
-  <mat-card style="height: auto; min-height: 45rem" class="w-100 p-5 shadow-lg">
+  <mat-card
+    style="height: auto; min-height: 45rem"
+    class="my-card w-100 p-5 shadow-lg"
+  >
     <h2 class="fw-bold mb-4 text-center">Vote Page</h2>
     <div *ngIf="!isLoad" class="row text-center">
-      <div class="col-4" [@slideInLeft]>
+      <div class="col-5" [@slideInLeft]>
         <div style="height: 30rem" class="border border-black">
           <img
             style="object-fit: cover; object-position: center"
@@ -28,11 +31,11 @@
         </div>
       </div>
       <div
-        class="col-4 d-flex justify-content-center align-items-center joti-one-regular"
+        class="col-2 d-flex justify-content-center align-items-center joti-one-regular"
       >
-        <span style="font-size: 72px">VS</span>
+        <span class="fs-1 fw-bold">VS</span>
       </div>
-      <div class="col-4" [@slideInRight]>
+      <div class="col-5" [@slideInRight]>
         <div style="height: 30rem" class="border border-black">
           <img
             style="object-fit: cover; object-position: center"

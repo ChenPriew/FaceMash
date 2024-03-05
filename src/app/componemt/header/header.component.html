@@ -1,13 +1,13 @@
-<mat-toolbar class="p-4 shadow-lg">
+<mat-toolbar class="p-4 shadow-lg h-auto">
   <div
-    class="container d-flex justify-content-between align-items-center joti-one-regular"
+    class="container d-flex justify-content-between align-items-center joti-one-regular column"
   >
     <div>
       <a routerLink="/" class="text-decoration-none text-black"
         ><h1 class="fw-bold fs-4 pink">Shin Chan FaceMash</h1></a
       >
     </div>
-    <div class="d-flex gap-3">
+    <div class="d-flex gap-3 column">
       <div *ngIf="uid && !isLoad">
         <!-- <button (click)="proFile()" class="fw-bold" mat-button color="accent">
           Profile

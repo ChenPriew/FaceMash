@@ -1,3 +1,27 @@
-.root {
-  background-image: url("../../../assets/img/1.jpg");
+@media (max-width: 770px) {
+  .row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .border {
+    height: 15rem !important;
+  }
+
+  .my-card {
+    height: 30rem !important;
+    min-height: 0 !important;
+  }
+}
+
+@media (max-width: 500px) {
+  .border {
+    height: 10rem !important;
+  }
+
+  .my-card {
+    height: 25rem !important;
+    min-height: 0 !important;
+  }
 }
