@@ -14,7 +14,11 @@
           color="accent"
         >
           <mat-label>DisplayName</mat-label>
-          <input #displayName matInput required />
+          <input
+            #displayName
+            matInput
+            placeholder="There's no need to change both"
+          />
         </mat-form-field>
         <mat-form-field
           appearance="outline"
@@ -22,21 +26,17 @@
           color="accent"
         >
           <mat-label>UserName</mat-label>
-          <input #userName matInput required />
-        </mat-form-field>
-        <mat-form-field
-          appearance="outline"
-          class="w-100 dense-3"
-          color="accent"
-        >
-          <mat-label>Enter Password to Update</mat-label>
-          <input #password matInput required />
+          <input
+            #userName
+            matInput
+            placeholder="There's no need to change both"
+          />
         </mat-form-field>
         <button
           mat-raised-button
           color="accent"
           class="w-100"
-          (click)="update(displayName, userName, password)"
+          (click)="update(displayName, userName)"
         >
           Update
         </button>

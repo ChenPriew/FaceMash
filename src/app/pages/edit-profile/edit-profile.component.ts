@@ -34,13 +34,7 @@ export class EditProfileComponent implements OnInit {
     console.log(old_password.value + ' ' + new_password.value);
   }
 
-  update(
-    displayName: HTMLInputElement,
-    userName: HTMLInputElement,
-    password: HTMLInputElement
-  ) {
-    console.log(
-      displayName.value + ' ' + userName.value + ' ' + password.value
-    );
+  update(displayName: HTMLInputElement, userName: HTMLInputElement) {
+    console.log(displayName.value + ' ' + userName.value);
   }
 }

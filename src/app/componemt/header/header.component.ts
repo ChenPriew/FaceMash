@@ -1,11 +1,13 @@
+import { UserService } from './../../services/api/user.service';
 import { routes } from './../../app.routes';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
+import { UserRes } from '../../model/user_res';
 
 @Component({
   selector: 'app-header',
@@ -20,10 +22,27 @@ import Swal from 'sweetalert2';
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   uid = localStorage.getItem('uid');
+  userData: UserRes | undefined;
+  isLoad = true;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private userService: UserService) {}
+
+  ngOnInit(): void {
+    if (localStorage.getItem('uid')) {
+      this.loadUserData(this.uid);
+    }
+  }
+
+  async loadUserData(id: any) {
+    const temp = (await this.userService.getUser(id)) as UserRes;
+    this.userData = temp;
+    console.log(this.userData);
+    if (this.userData) {
+      this.isLoad = false;
+    }
+  }
 
   logout() {
     Swal.fire({

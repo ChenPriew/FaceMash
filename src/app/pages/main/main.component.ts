@@ -59,6 +59,7 @@ export class MainComponent implements OnInit {
 
   async vote(winImg: any, loseImg: any) {
     if (localStorage.getItem('uid')) {
+      this.isLoad = true;
       const body = {
         VoterID: Number(this.uid), // Assuming this.uid is a string representing a number
         WinImageID: Number(winImg), // Assuming winImg is a string representing a number

@@ -4,18 +4,42 @@
   >
     <div>
       <a routerLink="/" class="text-decoration-none text-black"
-        ><h1 class="fw-bold fs-4">Shin Chan FaceMash</h1></a
+        ><h1 class="fw-bold fs-4 pink">Shin Chan FaceMash</h1></a
       >
     </div>
     <div class="d-flex gap-3">
+      <div *ngIf="uid && !isLoad">
+        <!-- <button (click)="proFile()" class="fw-bold" mat-button color="accent">
+          Profile
+        </button> -->
+        <div
+          style="cursor: pointer"
+          (click)="proFile()"
+          class="d-flex justify-content-center align-items-center"
+        >
+          <span class="pink fw-bold">{{ userData?.display_name }}</span>
+          <div style="width: 40px; height: 40px">
+            <img
+              class="h-100 w-100 object-fit-cover rounded-circle ms-2"
+              [src]="userData?.AvatarURL"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        *ngIf="uid && isLoad"
+        style="width: 40px; height: 40px"
+        class="d-flex justify-content-center align-items-center h-100"
+      >
+        <img
+          class="h-100 w-100"
+          src="https://i.pinimg.com/originals/d4/49/53/d4495381e34d98f911780264c3268698.gif"
+          alt=""
+        />
+      </div>
       <div>
         <button routerLink="/top10" class="fw-bold" mat-button color="accent">
           Top 10
-        </button>
-      </div>
-      <div>
-        <button (click)="proFile()" class="fw-bold" mat-button color="accent">
-          Profile
         </button>
       </div>
       <div *ngIf="!uid; else loggedIn">
