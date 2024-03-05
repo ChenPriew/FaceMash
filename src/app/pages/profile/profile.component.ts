@@ -77,11 +77,9 @@ export class ProfileComponent implements OnInit {
               this.loadUserImg(this.uid);
             }
           });
-          console.log('Avatar uploaded successfully');
-          console.log(response);
         },
         (error) => {
-          console.error('Error uploading avatar:', error);
+          console.error('Error uploading Image:', error);
         }
       );
     }
@@ -99,8 +97,6 @@ export class ProfileComponent implements OnInit {
               this.loadUserImg(this.uid);
             }
           });
-          console.log('Avatar uploaded successfully');
-          console.log(response);
         },
         (error) => {
           console.error('Error uploading avatar:', error);
@@ -115,14 +111,15 @@ export class ProfileComponent implements OnInit {
     this.hoverStates[index] = !this.hoverStates[index];
   }
 
-  changeImg(event: Event): void {
+  changeImg(event: Event, ImageID: any): void {
     const fileInput = event.target as HTMLInputElement;
     const file: File = (fileInput.files as FileList)[0];
     if (file) {
       // Perform any necessary logic with the selected file
-      console.log('Selected file:', file);
+      console.log('Selected file:', file, 'ImageID:', ImageID);
     }
   }
+
   deleteImg(ImageID: any) {
     Swal.fire({
       title: 'Delete Confirmation',

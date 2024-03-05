@@ -3,7 +3,7 @@
 <div
   class="container d-flex justify-content-center align-items-center mt-5 w-100 joti-one-regular"
 >
-  <mat-card style="height: 45rem" class="w-100 p-5 shadow-lg">
+  <mat-card style="height: auto; min-height: 45rem" class="w-100 p-5 shadow-lg">
     <h2 class="fw-bold mb-4 text-center">Vote Page</h2>
     <div *ngIf="!isLoad" class="row text-center">
       <div class="col-4" [@slideInLeft]>
@@ -56,7 +56,8 @@
     </div>
     <div
       *ngIf="isLoad"
-      class="d-flex justify-content-center align-items-center h-100"
+      style="height: 35rem"
+      class="d-flex justify-content-center align-items-center"
     >
       <img
         src="https://i.pinimg.com/originals/13/90/75/13907559a21dd41293af7c57a89b3849.gif"

@@ -38,7 +38,6 @@ export class HeaderComponent implements OnInit {
   async loadUserData(id: any) {
     const temp = (await this.userService.getUser(id)) as UserRes;
     this.userData = temp;
-    console.log(this.userData);
     if (this.userData) {
       this.isLoad = false;
     }
@@ -57,9 +56,6 @@ export class HeaderComponent implements OnInit {
         // Handle deletion logic here
         localStorage.removeItem('uid');
         location.reload();
-      } else {
-        // Handle cancellation logic here
-        console.log('Log-Out cancelled');
       }
     });
   }
@@ -67,19 +63,6 @@ export class HeaderComponent implements OnInit {
   proFile() {
     if (localStorage.getItem('uid')) {
       this.router.navigate(['/profile']);
-    } else {
-      Swal.fire({
-        title: 'Error',
-        text: 'You must log in',
-        icon: 'error',
-        showCancelButton: true,
-        confirmButtonText: 'Login',
-        cancelButtonText: 'Cancel',
-      }).then((result) => {
-        if (result.isConfirmed) {
-          this.router.navigate(['/login']);
-        }
-      });
     }
   }
 }
