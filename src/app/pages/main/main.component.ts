@@ -74,17 +74,36 @@ export class MainComponent implements OnInit {
       if (temp.message == 'Vote successfully recorded') {
         Swal.fire('Success', 'Vote Success', 'success').then((result) => {
           if (result.isConfirmed) {
-            this.isLoad = true;
             this.loadRanImg();
           }
         });
       } else {
+        let remainingTime = 5; // Set the initial remaining time in seconds
+
+        const timerInterval = setInterval(() => {
+          remainingTime--;
+          if (remainingTime <= 0) {
+            clearInterval(timerInterval);
+            Swal.close(); // Close the alert when the timer reaches 0
+            this.loadRanImg(); // Load a random image
+          } else {
+            Swal.update({
+              text: `Cooldown active. Cannot vote for the same ImageID within ${remainingTime} seconds.`,
+            });
+          }
+        }, 1000); // Update the timer every second (1000 milliseconds)
+
         Swal.fire({
           title: 'Error',
-          text: 'Cooldown active. Cannot vote for the same ImageID within 5 seconds.',
+          text: `Cooldown active. Cannot vote for the same ImageID within ${remainingTime} seconds.`,
           icon: 'error',
-          timer: 5000, // Set the timer to 5000 milliseconds (5 seconds)
           showConfirmButton: false, // Hide the "OK" button
+          timer: remainingTime * 1000, // Set the timer to the remaining time in milliseconds
+          didOpen: () => {
+            Swal.showLoading(); // Show a loading animation until the timer starts
+          },
+        }).then(() => {
+          clearInterval(timerInterval); // Clear the interval when the alert is closed manually
         });
       }
     } else {
