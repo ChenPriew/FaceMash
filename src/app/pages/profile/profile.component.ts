@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { MatFormField, MatHint, MatLabel } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { VoteRes } from '../../model/vote_res';
 
 @Component({
   selector: 'app-profile',
@@ -118,12 +119,26 @@ export class ProfileComponent implements OnInit {
     this.hoverStates[index] = !this.hoverStates[index];
   }
 
-  changeImg(event: Event, ImageID: any): void {
+  async changeImg(event: Event, ImageID: any): Promise<void> {
     const fileInput = event.target as HTMLInputElement;
     const file: File = (fileInput.files as FileList)[0];
     if (file) {
-      // Perform any necessary logic with the selected file
-      console.log('Selected file:', file, 'ImageID:', ImageID);
+      this.isLoad = true;
+      const temp = await this.userService
+        .upDateImg(file, ImageID, this.uid)
+        .subscribe(
+          (response) => {
+            Swal.fire('Success', 'Update Sucess', 'success').then((result) => {
+              if (result.isConfirmed) {
+                this.loadUser(this.uid);
+                this.loadUserImg(this.uid);
+              }
+            });
+          },
+          (error) => {
+            console.error('Error update image:', error);
+          }
+        );
     }
   }
 
@@ -156,9 +171,31 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  onDoneClick(input: HTMLInputElement) {
-    console.log('Done Click', input.value);
+  async onDoneClick(input: HTMLInputElement) {
+    this.isLoad = true;
+    let body = {
+      Bio: input.value,
+    };
+
+    const temp = (await this.userService.putUser(this.uid, body)) as VoteRes;
+    if (temp.message == 'User updated successfully') {
+      Swal.fire('Success', 'Update Success', 'success').then((result) => {
+        if (result.isConfirmed) {
+          this.loadUser(this.uid);
+          this.loadUserImg(this.uid);
+          this.isPutBio = false;
+        }
+      });
+    } else {
+      this.isLoad = false;
+      Swal.fire({
+        title: 'Error',
+        icon: 'error',
+        confirmButtonText: 'Try Again',
+      });
+    }
   }
+
   onCloseClick() {
     this.isPutBio = false;
   }

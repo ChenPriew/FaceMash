@@ -76,6 +76,18 @@ export class UserService {
     return response as UserImgRes;
   }
 
+  public async putUser(id: any, options?: any) {
+    const url = this.constants.API_ENDPOINT + '/updateUserInfo/' + id;
+
+    try {
+      const response = await lastValueFrom(this.http.put(url, options));
+      return response as VoteRes;
+    } catch (error) {
+      console.error('An error occurred:', error);
+      throw error;
+    }
+  }
+
   public uploadAvatar(file: File, userId: any) {
     const formData = new FormData();
     const url = this.constants.API_ENDPOINT + '/uploadAvatar';
@@ -89,6 +101,16 @@ export class UserService {
     const formData = new FormData();
     const url = this.constants.API_ENDPOINT + '/upload';
     formData.append('123', file); // Use the correct field name here
+    formData.append('id', userId); // Append the user ID to the form data
+
+    return this.http.post(url, formData);
+  }
+
+  public upDateImg(file: File, imgId: any, userId: any) {
+    const formData = new FormData();
+    const url = this.constants.API_ENDPOINT + '/updateImage';
+    formData.append('123', file); // Use the correct field name here
+    formData.append('imageId', imgId);
     formData.append('id', userId); // Append the user ID to the form data
 
     return this.http.post(url, formData);
