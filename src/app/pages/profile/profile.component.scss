@@ -47,6 +47,13 @@
     width: 200px;
     height: 200px;
   }
+  .to-col {
+    flex-direction: column !important;
+  }
+  .form {
+    width: 100% !important;
+    height: 6rem;
+  }
 }
 
 @media (max-width: 500px) {

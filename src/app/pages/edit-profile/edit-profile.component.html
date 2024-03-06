@@ -1,5 +1,17 @@
 <mat-tab-group color="accent">
   <mat-tab label="Update Profile">
+    <ng-template mat-tab-label>
+      <div class="d-flex flex-row gap-1 align-items-center">
+        <div style="height: 1.5rem; width: 1.5rem">
+          <mat-icon
+            class="fs-4 h-100 w-100"
+            aria-hidden="false"
+            fontIcon="manage_accounts"
+          ></mat-icon>
+        </div>
+        <div><span>Update Profile</span></div>
+      </div>
+    </ng-template>
     <div
       class="container mt-5 d-flex justify-content-center align-items-center"
     >
@@ -52,8 +64,20 @@
     <br />
   </mat-tab>
 
-  <mat-tab label="Change Password"
-    ><div
+  <mat-tab label="Change Password">
+    <ng-template mat-tab-label>
+      <div class="d-flex flex-row gap-1 align-items-center">
+        <div style="height: 1.5rem; width: 1.5rem">
+          <mat-icon
+            class="fs-4 h-100 w-100"
+            aria-hidden="false"
+            fontIcon="lock"
+          ></mat-icon>
+        </div>
+        <div><span>Change Profile</span></div>
+      </div>
+    </ng-template>
+    <div
       class="container mt-5 d-flex justify-content-center align-items-center"
     >
       <mat-card class="p-5 text-center mt-5 shadow-lg">

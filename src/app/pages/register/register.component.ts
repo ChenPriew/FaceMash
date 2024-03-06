@@ -8,6 +8,7 @@ import { MatCardModule } from '@angular/material/card';
 import { Router, RouterModule } from '@angular/router';
 import { LoginRes } from '../../model/login_res';
 import Swal from 'sweetalert2';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-register',
@@ -19,12 +20,15 @@ import Swal from 'sweetalert2';
     MatButtonModule,
     MatCardModule,
     RouterModule,
+    CommonModule,
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
 })
 export class RegisterComponent implements OnInit {
   hide = true;
+  isLoad = false;
+
   constructor(private userService: UserService, private router: Router) {}
   ngOnInit(): void {
     document.body.className = 'register';
@@ -44,11 +48,14 @@ export class RegisterComponent implements OnInit {
         confirmButtonText: 'Try Again',
       });
     } else {
+      this.isLoad = true;
       const body = {
         display_name: disName.value,
         username: userName.value,
         password: password.value,
       };
+      console.log(body);
+
       try {
         let temp = (await this.userService.postRegister(body)) as LoginRes;
         if (temp.message == 'User created successfully') {
@@ -59,6 +66,7 @@ export class RegisterComponent implements OnInit {
           });
         }
       } catch (error: any) {
+        this.isLoad = false;
         console.log(error); // ดูค่า error ที่ได้รับมาใน console
         if (
           error &&

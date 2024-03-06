@@ -9,6 +9,8 @@ import { UserImage, UserImgRes } from '../../model/user_img_res';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { MatFormField, MatHint, MatLabel } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-profile',
@@ -21,6 +23,10 @@ import { trigger, transition, style, animate } from '@angular/animations';
     MatButtonModule,
     RouterModule,
     CommonModule,
+    MatFormField,
+    MatLabel,
+    MatHint,
+    MatInputModule,
   ],
   animations: [
     trigger('slideInBottom', [
@@ -36,6 +42,7 @@ export class ProfileComponent implements OnInit {
   user!: UserRes;
   userImg: UserImage[] = new Array(5);
   isLoad = true;
+  isPutBio = false;
 
   constructor(private router: Router, private userService: UserService) {}
 
@@ -147,5 +154,12 @@ export class ProfileComponent implements OnInit {
         console.log('Delete cancelled');
       }
     });
+  }
+
+  onDoneClick(input: HTMLInputElement) {
+    console.log('Done Click', input.value);
+  }
+  onCloseClick() {
+    this.isPutBio = false;
   }
 }

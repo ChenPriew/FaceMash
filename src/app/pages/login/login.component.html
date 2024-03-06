@@ -1,33 +1,49 @@
 <div class="d-flex justify-content-center align-items-center w-100 h-100">
   <mat-card class="p-5 text-center shadow-lg">
-    <h1 class="mb-4 fw-bold">Log-In</h1>
-    <mat-form-field appearance="outline" class="w-100 dense-3" color="accent">
-      <mat-label>UserName</mat-label>
-      <input #userName matInput required />
-    </mat-form-field>
-    <mat-form-field appearance="outline" class="w-100 dense-3" color="accent">
-      <mat-label>Enter your password</mat-label>
-      <input #password matInput [type]="hide ? 'password' : 'text'" required />
+    <div *ngIf="!isLoad" style="width: 20rem">
+      <h1 class="mb-4 fw-bold">Log-In</h1>
+      <mat-form-field appearance="outline" class="w-100 dense-3" color="accent">
+        <mat-label>UserName</mat-label>
+        <input #userName matInput required />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="w-100 dense-3" color="accent">
+        <mat-label>Enter your password</mat-label>
+        <input
+          #password
+          matInput
+          [type]="hide ? 'password' : 'text'"
+          required
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+        >
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+      </mat-form-field>
       <button
-        mat-icon-button
-        matSuffix
-        (click)="hide = !hide"
-        [attr.aria-label]="'Hide password'"
-        [attr.aria-pressed]="hide"
+        mat-raised-button
+        color="accent"
+        class="w-100"
+        (click)="login(userName, password)"
       >
-        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        Log-In
       </button>
-    </mat-form-field>
-    <button
-      mat-raised-button
-      color="accent"
-      class="w-100"
-      (click)="login(userName, password)"
+      <span class="text-start mt-2"
+        >You don't have an account? <a routerLink="/register">Register</a></span
+      >
+    </div>
+    <div
+      *ngIf="isLoad"
+      style="width: 20rem; height: 17rem"
+      class="d-flex align-items-center justify-content-center"
     >
-      Log-In
-    </button>
-    <span class="text-start mt-2"
-      >You don't have an account? <a routerLink="/register">Register</a></span
-    >
+      <img
+        src="https://i.pinimg.com/originals/e1/78/f3/e178f3315d2520084e68a2c5388e0aa0.gif"
+      />
+    </div>
   </mat-card>
 </div>

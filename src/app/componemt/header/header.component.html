@@ -26,17 +26,7 @@
           </div>
         </div>
       </div>
-      <div
-        *ngIf="uid && isLoad"
-        style="width: 40px; height: 40px"
-        class="d-flex justify-content-center align-items-center h-100"
-      >
-        <img
-          class="h-100 w-100"
-          src="https://i.pinimg.com/originals/d4/49/53/d4495381e34d98f911780264c3268698.gif"
-          alt=""
-        />
-      </div>
+      <div *ngIf="uid && isLoad"></div>
       <div>
         <button routerLink="/top10" class="fw-bold" mat-button color="accent">
           Top 10
