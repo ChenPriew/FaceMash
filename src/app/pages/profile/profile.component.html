@@ -85,31 +85,30 @@
             </div>
           </div>
           <div *ngIf="isPutBio">
-            <form (ngSubmit)="onDoneClick(input)">
-              <mat-form-field
-                appearance="outline"
-                class="w-75 dense-4 form"
-                color="primary"
-              >
-                <mat-label>Change Your Bio</mat-label>
-                <div class="d-flex align-items-center gap-1 to-col">
-                  <input matInput #input required />
-                  <span class="flex-grow-1"></span>
-                  <div class="d-flex justify-content-center align-items-center">
-                    <button mat-icon-button type="submit" class="mr-2 d-flex">
-                      <mat-icon fontIcon="done"></mat-icon>
-                    </button>
-                    <button mat-icon-button (click)="onCloseClick()">
-                      <mat-icon
-                        fontIcon="close"
-                        color="warn"
-                        class="d-flex"
-                      ></mat-icon>
-                    </button>
-                  </div>
-                </div>
-              </mat-form-field>
-            </form>
+            <mat-form-field
+              appearance="outline"
+              class="w-75 dense-4 form"
+              color="primary"
+            >
+              <mat-label>Change Your Bio</mat-label>
+              <div class="d-flex align-items-center gap-1 to-col">
+                <input matInput #input required />
+                <span class="flex-grow-1"></span>
+                <!-- This creates a flexible space to push icons to the right -->
+                <mat-icon
+                  style="cursor: pointer"
+                  (click)="onDoneClick(input)"
+                  class="mr-2"
+                  fontIcon="done"
+                ></mat-icon>
+                <mat-icon
+                  style="cursor: pointer"
+                  (click)="onCloseClick()"
+                  fontIcon="close"
+                  color="warn"
+                ></mat-icon>
+              </div>
+            </mat-form-field>
           </div>
         </div>
       </div>

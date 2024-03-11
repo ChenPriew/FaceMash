@@ -173,6 +173,15 @@ export class ProfileComponent implements OnInit {
 
   async onDoneClick(input: HTMLInputElement) {
     this.isLoad = true;
+    if (!input || input.value.trim() === '') {
+      Swal.fire({
+        title: 'Error',
+        text: 'You have not input value',
+        icon: 'error',
+        confirmButtonText: 'Try Again',
+      });
+      this.isLoad = false;
+    }
     let body = {
       Bio: input.value,
     };
