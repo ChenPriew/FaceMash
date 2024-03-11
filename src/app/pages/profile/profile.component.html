@@ -1,6 +1,6 @@
 <app-header></app-header>
 
-<div class="container my-5">
+<div class="container mt-5">
   <div style="height: auto; min-height: 45rem" class="p-5 shadow-lg bg-white">
     <div *ngIf="!isLoad" [@slideInBottom]>
       <div class="row">
@@ -69,7 +69,7 @@
           <div
             *ngIf="!isPutBio"
             style="min-width: 100%"
-            class="d-flex flex-row gap-1 w-auto"
+            class="d-flex flex-row gap-2 w-auto"
           >
             <div>
               <p class="fw-semibold">{{ user.Bio }}</p>
@@ -85,30 +85,31 @@
             </div>
           </div>
           <div *ngIf="isPutBio">
-            <mat-form-field
-              appearance="outline"
-              class="w-75 dense-4 form"
-              color="primary"
-            >
-              <mat-label>Change Your Bio</mat-label>
-              <div class="d-flex align-items-center gap-1 to-col">
-                <input matInput #input />
-                <span class="flex-grow-1"></span>
-                <!-- This creates a flexible space to push icons to the right -->
-                <mat-icon
-                  style="cursor: pointer"
-                  (click)="onDoneClick(input)"
-                  class="mr-2"
-                  fontIcon="done"
-                ></mat-icon>
-                <mat-icon
-                  style="cursor: pointer"
-                  (click)="onCloseClick()"
-                  fontIcon="close"
-                  color="warn"
-                ></mat-icon>
-              </div>
-            </mat-form-field>
+            <form (ngSubmit)="onDoneClick(input)">
+              <mat-form-field
+                appearance="outline"
+                class="w-75 dense-4 form"
+                color="primary"
+              >
+                <mat-label>Change Your Bio</mat-label>
+                <div class="d-flex align-items-center gap-1 to-col">
+                  <input matInput #input required />
+                  <span class="flex-grow-1"></span>
+                  <div class="d-flex justify-content-center align-items-center">
+                    <button mat-icon-button type="submit" class="mr-2 d-flex">
+                      <mat-icon fontIcon="done"></mat-icon>
+                    </button>
+                    <button mat-icon-button (click)="onCloseClick()">
+                      <mat-icon
+                        fontIcon="close"
+                        color="warn"
+                        class="d-flex"
+                      ></mat-icon>
+                    </button>
+                  </div>
+                </div>
+              </mat-form-field>
+            </form>
           </div>
         </div>
       </div>
@@ -220,4 +221,8 @@
       />
     </div>
   </div>
+</div>
+<div>
+  <br />
+  <br />
 </div>

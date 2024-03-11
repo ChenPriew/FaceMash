@@ -37,24 +37,62 @@ export class EditProfileComponent implements OnInit {
     document.body.className = 'profile';
   }
 
-  changePassword(
+  async changePassword(
     old_password: HTMLInputElement,
     new_password: HTMLInputElement
   ) {
-    console.log(old_password.value + ' ' + new_password.value);
+    if (old_password.value == new_password.value) {
+      Swal.fire({
+        title: 'Error',
+        text: 'Old password and New password is match',
+        icon: 'error',
+        confirmButtonText: 'Try Again',
+      });
+    } else {
+      try {
+        this.isLoad = true;
+        let body = {
+          oldPassword: old_password.value,
+          newPassword: new_password.value,
+        };
+        const temp = await this.userService.putPassword(this.uid, body);
+        if (temp.message == 'Password updated successfully') {
+          Swal.fire('Success', 'Update Success', 'success').then((result) => {
+            if (result.isConfirmed) {
+              this.router.navigateByUrl('/profile');
+            }
+          });
+        }
+      } catch (error) {
+        this.isLoad = false;
+        Swal.fire({
+          title: 'Error',
+          text: 'Incorrect old password',
+          icon: 'error',
+          confirmButtonText: 'Try Again',
+        });
+      }
+    }
   }
 
   async update(displayName: HTMLInputElement, userName: HTMLInputElement) {
     this.isLoad = true;
     let body = {};
-    if (displayName.value) {
+    if (displayName.value && userName.value) {
       body = {
         display_name: displayName.value,
-      };
-    } else if (userName.value) {
-      body = {
         Username: userName.value,
       };
+    } else {
+      if (displayName.value) {
+        body = {
+          display_name: displayName.value,
+        };
+      } else if (userName.value) {
+        body = {
+          Username: userName.value,
+        };
+      }
     }
 
     const temp = (await this.userService.putUser(this.uid, body)) as VoteRes;

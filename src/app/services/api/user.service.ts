@@ -88,6 +88,18 @@ export class UserService {
     }
   }
 
+  public async putPassword(id: any, options?: any) {
+    const url = this.constants.API_ENDPOINT + '/updatePassword/' + id;
+
+    try {
+      const response = await lastValueFrom(this.http.put(url, options));
+      return response as VoteRes;
+    } catch (error) {
+      console.error('An error occurred:', error);
+      throw error;
+    }
+  }
+
   public uploadAvatar(file: File, userId: any) {
     const formData = new FormData();
     const url = this.constants.API_ENDPOINT + '/uploadAvatar';

@@ -87,39 +87,50 @@
       class="container mt-5 d-flex justify-content-center align-items-center"
     >
       <mat-card style="width: 27rem" class="p-5 text-center mt-5 shadow-lg">
-        <h1 class="mb-4 fw-bold">Change Password</h1>
-        <mat-form-field
-          appearance="outline"
-          class="w-100 dense-3"
-          color="accent"
+        <div *ngIf="!isLoad">
+          <h1 class="mb-4 fw-bold">Change Password</h1>
+          <mat-form-field
+            appearance="outline"
+            class="w-100 dense-3"
+            color="accent"
+          >
+            <mat-label>Old Password</mat-label>
+            <input #old_password matInput required />
+          </mat-form-field>
+          <mat-form-field
+            appearance="outline"
+            class="w-100 dense-3"
+            color="accent"
+          >
+            <mat-label>New Password</mat-label>
+            <input #new_password matInput required />
+          </mat-form-field>
+          <button
+            mat-raised-button
+            color="accent"
+            class="w-100"
+            (click)="changePassword(old_password, new_password)"
+          >
+            Update
+          </button>
+          <button
+            routerLink="/profile"
+            class="w-100 mt-2"
+            mat-raised-button
+            color="warn"
+          >
+            Cancle
+          </button>
+        </div>
+        <div
+          *ngIf="isLoad"
+          style="width: 20rem; height: 20rem"
+          class="d-flex align-items-center justify-content-center"
         >
-          <mat-label>Old Password</mat-label>
-          <input #old_password matInput required />
-        </mat-form-field>
-        <mat-form-field
-          appearance="outline"
-          class="w-100 dense-3"
-          color="accent"
-        >
-          <mat-label>New Password</mat-label>
-          <input #new_password matInput required />
-        </mat-form-field>
-        <button
-          mat-raised-button
-          color="accent"
-          class="w-100"
-          (click)="changePassword(old_password, new_password)"
-        >
-          Update
-        </button>
-        <button
-          routerLink="/profile"
-          class="w-100 mt-2"
-          mat-raised-button
-          color="warn"
-        >
-          Cancle
-        </button>
+          <img
+            src="https://i.pinimg.com/originals/e1/78/f3/e178f3315d2520084e68a2c5388e0aa0.gif"
+          />
+        </div>
       </mat-card>
     </div>
     <br />
