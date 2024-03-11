@@ -8,6 +8,7 @@ import { TopReted } from '../../model/top_reted_res';
 import { UserRes } from '../../model/user_res';
 import { UserImgRes } from '../../model/user_img_res';
 import { VoteRes } from '../../model/vote_res';
+import { ImgStatRes } from '../../model/img_stat_res';
 
 @Injectable({
   providedIn: 'root',
@@ -132,5 +133,11 @@ export class UserService {
     const url = this.constants.API_ENDPOINT + '/deleteImage/' + id;
     const response = await lastValueFrom(this.http.delete(url));
     return response as VoteRes;
+  }
+
+  public async getImgStat(id: any) {
+    const url = this.constants.API_ENDPOINT + '/image-stats/' + id;
+    const response = await lastValueFrom(this.http.get(url));
+    return response as ImgStatRes[];
   }
 }

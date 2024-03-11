@@ -12,50 +12,7 @@
             <span
               class="fw-bold d-flex justify-content-center align-items-center"
             >
-              <svg
-                width="30"
-                height="30"
-                style="filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.5))"
-                class="me-2"
-              >
-                <defs>
-                  <linearGradient
-                    id="grad1"
-                    x1="0%"
-                    y1="0%"
-                    x2="100%"
-                    y2="100%"
-                  >
-                    <stop
-                      offset="0%"
-                      style="stop-color: rgb(255, 255, 0); stop-opacity: 1"
-                    />
-                    <stop
-                      offset="100%"
-                      style="stop-color: rgb(255, 165, 0); stop-opacity: 1"
-                    />
-                  </linearGradient>
-                </defs>
-                <circle
-                  cx="15"
-                  cy="15"
-                  r="15"
-                  fill="url(#grad1)"
-                  stroke-width="1"
-                />
-                <text
-                  x="50%"
-                  y="50%"
-                  text-anchor="middle"
-                  alignment-baseline="central"
-                  fill="white"
-                  font-size="14"
-                  font-weight="bold"
-                >
-                  {{ i + 1 }}
-                </text>
-              </svg>
-              {{ item.display_name }}'s Image
+              Upload by {{ item.display_name }}
             </span>
           </div>
           <div style="height: 75%" class="my-2 w-100">
@@ -66,13 +23,97 @@
               alt=""
             />
           </div>
-          <div class="d-flex justify-content-center">
-            <mat-icon
-              aria-hidden="false"
-              fontIcon="favorite"
-              color="accent"
-            ></mat-icon>
-            <span class="fw-semibold">{{ item.EloScore }}</span>
+          <div
+            class="d-flex justify-content-center align-items-center gap-1 to-col"
+          >
+            <div class="d-flex justify-content-center">
+              <mat-icon aria-hidden="false" fontIcon="military_tech"></mat-icon>
+              <span class="fw-semibold">{{ i + 1 }}</span>
+            </div>
+            <div class="d-flex justify-content-center">
+              <mat-icon
+                aria-hidden="false"
+                fontIcon="favorite"
+                color="accent"
+              ></mat-icon>
+              <span class="fw-semibold">{{ item.EloScore }}</span>
+            </div>
+            <div
+              *ngIf="item.rank_change.type == 0"
+              class="d-flex justify-content-center"
+              routerLink="/graph/{{ item.ImageID }}"
+              style="cursor: pointer"
+            >
+              <mat-icon
+                aria-hidden="false"
+                fontIcon="trending_down"
+                style="color: red"
+              ></mat-icon>
+              <span class="fw-semibold">{{ item.rank_change.change }}</span>
+            </div>
+            <div
+              *ngIf="item.rank_change.type == 1"
+              class="d-flex justify-content-center"
+              routerLink="/graph/{{ item.ImageID }}"
+              style="cursor: pointer"
+            >
+              <mat-icon
+                aria-hidden="false"
+                fontIcon="trending_up"
+                style="color: green"
+              ></mat-icon>
+              <span class="fw-semibold">{{ item.rank_change.change }}</span>
+            </div>
+            <div
+              *ngIf="item.rank_change.type == 2"
+              class="d-flex justify-content-center"
+              routerLink="/graph/{{ item.ImageID }}"
+              style="cursor: pointer"
+            >
+              <mat-icon
+                aria-hidden="false"
+                fontIcon="trending_flat"
+                style="color: black"
+              ></mat-icon>
+              <span class="fw-semibold">{{ item.rank_change.change }}</span>
+            </div>
+            <div
+              *ngIf="item.rank_change.type == 3"
+              class="d-flex justify-content-center"
+              routerLink="/graph/{{ item.ImageID }}"
+              style="cursor: pointer; position: relative"
+            >
+              <mat-icon
+                aria-hidden="false"
+                fontIcon="stars"
+                style="color: gold; position: relative; font-size: 26px"
+              ></mat-icon>
+              <span
+                style="
+                  font-size: 9px;
+                  font-weight: bold;
+                  position: absolute;
+                  top: 55%;
+                  left: 50%;
+                  transform: translate(-50%, -50%);
+                "
+                >{{ item.rank_change.change }}</span
+              >
+            </div>
+
+            <div>
+              <button
+                mat-button
+                class="d-flex justify-content-center align-items-center"
+              >
+                <mat-icon
+                  aria-hidden="false"
+                  fontIcon="visibility"
+                  style="color: black"
+                ></mat-icon
+                ><span class="fw-semibold">View</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>

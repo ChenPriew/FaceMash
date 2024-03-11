@@ -6,13 +6,22 @@ import { CommonModule } from '@angular/common';
 import { TopReted } from '../../model/top_reted_res';
 import { MatIcon } from '@angular/material/icon';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { MatButtonModule } from '@angular/material/button';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-top10',
   standalone: true,
   templateUrl: './top10.component.html',
   styleUrl: './top10.component.scss',
-  imports: [HeaderComponent, MatCard, CommonModule, MatIcon],
+  imports: [
+    HeaderComponent,
+    MatCard,
+    CommonModule,
+    MatIcon,
+    MatButtonModule,
+    RouterModule,
+  ],
   animations: [
     trigger('slideInBottom', [
       transition(':enter', [
@@ -35,8 +44,37 @@ export class Top10Component implements OnInit {
 
   async loadTopReted() {
     const temp = (await this.userService.getTopRated()) as TopReted[];
-    this.top10 = temp;
     if (temp) {
+      this.top10 = temp;
+      console.log(this.top10);
+
+      temp.forEach((item, i) => {
+        if (item.rank_change.charAt(0) == '0') {
+          let temp = {
+            type: 2,
+            change: 0,
+          };
+          this.top10[i].rank_change = temp;
+        } else if (item.rank_change.charAt(0) == '+') {
+          let temp = {
+            type: 1,
+            change: Number(item.rank_change),
+          };
+          this.top10[i].rank_change = temp;
+        } else if (item.rank_change.charAt(0) == '-') {
+          let temp = {
+            type: 0,
+            change: Math.abs(Number(item.rank_change)),
+          };
+          this.top10[i].rank_change = temp;
+        } else if (item.rank_change == 'New') {
+          let temp = {
+            type: 3,
+            change: 'NEW',
+          };
+          this.top10[i].rank_change = temp;
+        }
+      });
       this.isLoad = false;
     }
   }
