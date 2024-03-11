@@ -81,6 +81,7 @@
                 aria-hidden="false"
                 fontIcon="edit_square"
                 (click)="isPutBio = true"
+                matTooltip="Change Your Bio"
               ></mat-icon>
             </div>
           </div>
@@ -100,12 +101,14 @@
                   (click)="onDoneClick(input)"
                   class="mr-2"
                   fontIcon="done"
+                  matTooltip="Submit"
                 ></mat-icon>
                 <mat-icon
                   style="cursor: pointer"
                   (click)="onCloseClick()"
                   fontIcon="close"
                   color="warn"
+                  matTooltip="Cancel"
                 ></mat-icon>
               </div>
             </mat-form-field>

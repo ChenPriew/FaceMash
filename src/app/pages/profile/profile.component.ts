@@ -12,6 +12,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
 import { MatFormField, MatHint, MatLabel } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { VoteRes } from '../../model/vote_res';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-profile',
@@ -28,6 +29,7 @@ import { VoteRes } from '../../model/vote_res';
     MatLabel,
     MatHint,
     MatInputModule,
+    MatTooltipModule,
   ],
   animations: [
     trigger('slideInBottom', [

@@ -8,6 +8,7 @@ import { MatIcon } from '@angular/material/icon';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-top10',
@@ -21,6 +22,7 @@ import { RouterModule } from '@angular/router';
     MatIcon,
     MatButtonModule,
     RouterModule,
+    MatTooltipModule,
   ],
   animations: [
     trigger('slideInBottom', [
