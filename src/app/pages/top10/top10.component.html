@@ -8,7 +8,7 @@
           style="height: 20rem"
           class="border border-black p-2 d-flex flex-column text-center shadow-lg bg-white"
         >
-          <div>
+          <div matTooltip="View {{item.display_name}} Profile" style="cursor: pointer">
             <span
               class="fw-bold d-flex justify-content-center align-items-center"
             >
@@ -109,6 +109,7 @@
               <button
                 mat-button
                 class="d-flex justify-content-center align-items-center"
+                matTooltip="View More Detail"
               >
                 <mat-icon
                   aria-hidden="false"
