@@ -4,5 +4,5 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class Constants {
-  public readonly API_ENDPOINT: string = 'https://api-face-pink.vercel.app';
+  public readonly API_ENDPOINT: string = 'https://facemashapizaza.onrender.com';
 }

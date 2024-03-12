@@ -1,5 +1,5 @@
 <app-header></app-header>
-<div class="container mt-5">
+<div style="margin-top: 2.25rem" class="container">
   <mat-card style="height: auto; min-height: 45rem" class="w-100 p-5 shadow-lg">
     <div *ngIf="!isLoad" class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
       <div class="col" *ngFor="let item of top10; let i = index">
@@ -8,7 +8,10 @@
           style="height: 20rem"
           class="border border-black p-2 d-flex flex-column text-center shadow-lg bg-white"
         >
-          <div matTooltip="View {{item.display_name}} Profile" style="cursor: pointer">
+          <div
+            matTooltip="View {{ item.display_name }} Profile"
+            style="cursor: pointer"
+          >
             <span
               class="fw-bold d-flex justify-content-center align-items-center"
             >

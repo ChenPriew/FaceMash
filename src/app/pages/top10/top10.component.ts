@@ -48,36 +48,37 @@ export class Top10Component implements OnInit {
     const temp = (await this.userService.getTopRated()) as TopReted[];
     if (temp) {
       this.top10 = temp;
-      console.log(this.top10);
+      // console.log(this.top10);
 
       temp.forEach((item, i) => {
-        if (item.rank_change.charAt(0) == '0') {
-          let temp = {
-            type: 2,
-            change: 0,
-          };
-          this.top10[i].rank_change = temp;
-        } else if (item.rank_change.charAt(0) == '+') {
-          let temp = {
-            type: 1,
-            change: Number(item.rank_change),
-          };
-          this.top10[i].rank_change = temp;
-        } else if (item.rank_change.charAt(0) == '-') {
-          let temp = {
-            type: 0,
-            change: Math.abs(Number(item.rank_change)),
-          };
-          this.top10[i].rank_change = temp;
-        } else if (item.rank_change == 'New') {
+        if (item.rank == null) {
           let temp = {
             type: 3,
             change: 'NEW',
           };
           this.top10[i].rank_change = temp;
+        } else if (item.rank == i + 1) {
+          let temp = {
+            type: 2,
+            change: 0,
+          };
+          this.top10[i].rank_change = temp;
+        } else if (item.rank > i + 1) {
+          let temp = {
+            type: 1,
+            change: item.rank - (i + 1),
+          };
+          this.top10[i].rank_change = temp;
+        } else if (item.rank < i + 1) {
+          let temp = {
+            type: 0,
+            change: i + 1 - item.rank,
+          };
+          this.top10[i].rank_change = temp;
         }
       });
       this.isLoad = false;
+      console.log(this.top10);
     }
   }
 }
