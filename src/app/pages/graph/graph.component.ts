@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import Chart from 'chart.js/auto';
 import { MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-graph',
@@ -19,13 +20,18 @@ export class GraphComponent implements OnInit {
 
   constructor(
     private activeatedRoute: ActivatedRoute,
-    private userService: UserService
+    private userService: UserService,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
     document.body.className = 'login';
     this.id = this.activeatedRoute.snapshot.paramMap.get('id') || '';
     this.loadData(this.id);
+  }
+
+  back() {
+    this.location.back();
   }
 
   async loadData(id: any) {
