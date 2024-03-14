@@ -8,6 +8,9 @@
   .border {
     height: 15rem !important;
   }
+  .sm {
+    height: 14rem !important;
+  }
 
   .my-card {
     height: 30rem !important;
@@ -18,6 +21,15 @@
 @media (max-width: 500px) {
   .border {
     height: 10rem !important;
+  }
+
+  .sm {
+    height: 9rem !important;
+  }
+
+  .sm-btn {
+    width: 100% !important;
+    font-size: small !important;
   }
 
   .my-card {
