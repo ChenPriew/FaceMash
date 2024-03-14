@@ -1,0 +1,77 @@
+<h1 mat-dialog-title>Elo Score Calculation</h1>
+<mat-dialog-content class="mat-typography">
+  <h2 class="text-danger">Left Image Elo Score: {{ data[0].EloScore }}</h2>
+  <h2 class="text-primary">Right Image Elo Score: {{ data[1].EloScore }}</h2>
+
+  <h3 class="text-danger">Scenario 1: Left Image wins and Right Image loses</h3>
+  <p>Given:</p>
+  <ul>
+    <li>Left Image score: {{ data[0].EloScore }}</li>
+    <li>Right Image score: {{ data[1].EloScore }}</li>
+    <li>Left Image wins (score1 = 1)</li>
+    <li>K-factor (k) = 32</li>
+  </ul>
+
+  <p>Calculation:</p>
+  <ul>
+    <li>
+      Expected score for Left Image (E1) = 1 / (1 + 10^(({{
+        data[1].EloScore
+      }}
+      - {{ data[0].EloScore }}) / 400))
+    </li>
+    <li>
+      Expected score for Right Image (E2) = 1 / (1 + 10^(({{
+        data[0].EloScore
+      }}
+      - {{ data[1].EloScore }}) / 400))
+    </li>
+    <li>
+      Updated Left Image score = {{ data[0].EloScore }} + 32 * (1 - {{ s1e1 }})
+      = {{ s1u1 }}
+    </li>
+    <li>
+      Updated Right Image score = {{ data[1].EloScore }} + 32 * (0 - {{ s1e2 }})
+      = {{ s1u2 }}
+    </li>
+  </ul>
+
+  <h3 class="text-primary">
+    Scenario 2: Right Image wins and Left Image loses
+  </h3>
+  <p>Given:</p>
+  <ul>
+    <li>Left Image score: {{ data[0].EloScore }}</li>
+    <li>Right Image score: {{ data[1].EloScore }}</li>
+    <li>Right Image wins (score2 = 1)</li>
+    <li>K-factor (k) = 32</li>
+  </ul>
+
+  <p>Calculation:</p>
+  <ul>
+    <li>
+      Expected score for Left Image (E1) = 1 / (1 + 10^(({{
+        data[1].EloScore
+      }}
+      - {{ data[0].EloScore }}) / 400))
+    </li>
+    <li>
+      Expected score for Right Image (E2) = 1 / (1 + 10^(({{
+        data[0].EloScore
+      }}
+      - {{ data[1].EloScore }}) / 400))
+    </li>
+    <li>
+      Updated Left Image score = {{ data[0].EloScore }} + 32 * (0 - {{ s1e1 }})
+      = {{ s2u1 }}
+    </li>
+    <li>
+      Updated Right Image score = {{ data[1].EloScore }} + 32 * (1 - {{ s1e2 }})
+      = {{ s2u2 }}
+    </li>
+  </ul>
+</mat-dialog-content>
+
+<mat-dialog-actions align="center">
+  <button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>

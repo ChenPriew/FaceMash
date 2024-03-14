@@ -68,7 +68,7 @@ export class GraphComponent implements OnInit {
             min: 1000,
             max: 2000,
             ticks: {
-              stepSize: 1, // Display integer values only
+              stepSize: 100, // Display integer values only
             },
           },
         },

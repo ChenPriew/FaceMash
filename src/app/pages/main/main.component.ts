@@ -9,6 +9,8 @@ import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogElementsComponent } from '../../components/dialog-elements/dialog-elements.component';
 
 @Component({
   selector: 'app-main',
@@ -36,14 +38,31 @@ export class MainComponent implements OnInit {
   img2: any;
   uid: any;
   isLoad = true;
+  sendData: RandomImgRes[] = [];
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.uid = localStorage.getItem('uid');
 
     document.body.className = 'main';
     this.loadRanImg();
+  }
+
+  openDialog() {
+    this.sendData.push(this.img1);
+    this.sendData.push(this.img2);
+    const dialogRef = this.dialog.open(DialogElementsComponent, {
+      data: this.sendData,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
   async loadRanImg() {
@@ -58,66 +77,59 @@ export class MainComponent implements OnInit {
   }
 
   async vote(winImg: any, loseImg: any) {
-    if (localStorage.getItem('uid')) {
-      this.isLoad = true;
-      const body = {
+    this.isLoad = true;
+    let body = {};
+    if (!localStorage.getItem('uid')) {
+      body = {
+        WinImageID: Number(winImg), // Assuming winImg is a string representing a number
+        LoseImageID: Number(loseImg), // Assuming loseImg is a string representing a number
+      };
+    } else {
+      body = {
         VoterID: Number(this.uid), // Assuming this.uid is a string representing a number
         WinImageID: Number(winImg), // Assuming winImg is a string representing a number
         LoseImageID: Number(loseImg), // Assuming loseImg is a string representing a number
       };
+    }
 
-      console.log(body);
+    console.log(body);
 
-      let temp = (await this.userService.vote(body)) as VoteRes;
-      console.log(temp);
+    let temp = (await this.userService.vote(body)) as VoteRes;
+    console.log(temp);
 
-      if (temp.message == 'Vote successfully recorded') {
-        Swal.fire('Success', 'Vote Success', 'success').then((result) => {
-          if (result.isConfirmed) {
-            this.loadRanImg();
-          }
-        });
-      } else {
-        let remainingTime = 5; // Set the initial remaining time in seconds
-
-        const timerInterval = setInterval(() => {
-          remainingTime--;
-          if (remainingTime <= 0) {
-            clearInterval(timerInterval);
-            Swal.close(); // Close the alert when the timer reaches 0
-            this.loadRanImg(); // Load a random image
-          } else {
-            Swal.update({
-              text: `Cooldown active. Cannot vote for the same ImageID within ${remainingTime} seconds.`,
-            });
-          }
-        }, 1000); // Update the timer every second (1000 milliseconds)
-
-        Swal.fire({
-          title: 'Error',
-          text: `Cooldown active. Cannot vote for the same ImageID within ${remainingTime} seconds.`,
-          icon: 'error',
-          showConfirmButton: false, // Hide the "OK" button
-          timer: remainingTime * 1000, // Set the timer to the remaining time in milliseconds
-          didOpen: () => {
-            Swal.showLoading(); // Show a loading animation until the timer starts
-          },
-        }).then(() => {
-          clearInterval(timerInterval); // Clear the interval when the alert is closed manually
-        });
-      }
+    if (temp.message == 'Vote successfully recorded') {
+      Swal.fire('Success', 'Vote Success', 'success').then((result) => {
+        if (result.isConfirmed) {
+          this.loadRanImg();
+        }
+      });
     } else {
+      let remainingTime = 5; // Set the initial remaining time in seconds
+
+      const timerInterval = setInterval(() => {
+        remainingTime--;
+        if (remainingTime <= 0) {
+          clearInterval(timerInterval);
+          Swal.close(); // Close the alert when the timer reaches 0
+          this.loadRanImg(); // Load a random image
+        } else {
+          Swal.update({
+            text: `Cooldown active. Cannot vote for the same ImageID within ${remainingTime} seconds.`,
+          });
+        }
+      }, 1000); // Update the timer every second (1000 milliseconds)
+
       Swal.fire({
         title: 'Error',
-        text: 'You must log in',
+        text: `Cooldown active. Cannot vote for the same ImageID within ${remainingTime} seconds.`,
         icon: 'error',
-        showCancelButton: true,
-        confirmButtonText: 'Login',
-        cancelButtonText: 'Cancel',
-      }).then((result) => {
-        if (result.isConfirmed) {
-          this.router.navigate(['/login']);
-        }
+        showConfirmButton: false, // Hide the "OK" button
+        timer: remainingTime * 1000, // Set the timer to the remaining time in milliseconds
+        didOpen: () => {
+          Swal.showLoading(); // Show a loading animation until the timer starts
+        },
+      }).then(() => {
+        clearInterval(timerInterval); // Clear the interval when the alert is closed manually
       });
     }
   }

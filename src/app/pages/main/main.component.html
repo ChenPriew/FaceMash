@@ -22,18 +22,30 @@
           <button
             (click)="vote(img1.ImageID, img2.ImageID)"
             style="height: 3rem"
-            class="fw-bold fs-3 w-100 mt-4"
+            class="fw-bold fs-3 w-100 mt-4 text-bg-danger"
             mat-stroked-button
-            color="accent"
           >
             VOTE
           </button>
         </div>
       </div>
-      <div
-        class="col-2 d-flex justify-content-center align-items-center joti-one-regular"
-      >
-        <span class="fs-1 fw-bold">VS</span>
+      <div class="col-2 joti-one-regular">
+        <div
+          style="height: 29rem"
+          class="d-flex justify-content-center align-items-center"
+        >
+          <span class="fs-1 fw-bold">VS</span>
+        </div>
+        <div>
+          <button
+            style="height: 4rem"
+            class="fw-bold fs-4 w-100 mt-4 text-bg-dark"
+            mat-stroked-button
+            (click)="openDialog()"
+          >
+            Score Rules
+          </button>
+        </div>
       </div>
       <div class="col-5" [@slideInRight]>
         <div style="height: 30rem" class="border border-black">
@@ -48,9 +60,8 @@
           <button
             (click)="vote(img2.ImageID, img1.ImageID)"
             style="height: 3rem"
-            class="fw-bold fs-3 w-100 mt-4"
+            class="fw-bold fs-3 w-100 mt-4 text-bg-primary"
             mat-stroked-button
-            color="primary"
           >
             VOTE
           </button>
