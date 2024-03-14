@@ -48,7 +48,7 @@ export class GraphComponent implements OnInit {
         labels: labels,
         datasets: [
           {
-            label: 'History Rank 7Day',
+            label: 'History Elo score 7Day',
             data: data,
             borderColor: 'rgb(75, 192, 192)',
             tension: 0.1,

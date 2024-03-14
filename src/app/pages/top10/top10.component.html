@@ -39,14 +39,17 @@
                 fontIcon="favorite"
                 color="accent"
               ></mat-icon>
-              <span class="fw-semibold">{{ item.EloScore }}</span>
+              <span
+                class="fw-semibold"
+                routerLink="/graph/{{ item.ImageID }}"
+                style="cursor: pointer"
+                >{{ item.EloScore }}</span
+              >
             </div>
             <div
               *ngIf="item.rank_change.type == 0"
               class="d-flex justify-content-center"
-              routerLink="/graph/{{ item.ImageID }}"
-              style="cursor: pointer"
-              matTooltip="View Graph"
+              matTooltip="Ranking"
             >
               <mat-icon
                 aria-hidden="false"
@@ -58,9 +61,7 @@
             <div
               *ngIf="item.rank_change.type == 1"
               class="d-flex justify-content-center"
-              routerLink="/graph/{{ item.ImageID }}"
-              style="cursor: pointer"
-              matTooltip="View Graph"
+              matTooltip="Ranking"
             >
               <mat-icon
                 aria-hidden="false"
@@ -72,9 +73,7 @@
             <div
               *ngIf="item.rank_change.type == 2"
               class="d-flex justify-content-center"
-              routerLink="/graph/{{ item.ImageID }}"
-              style="cursor: pointer"
-              matTooltip="View Graph"
+              matTooltip="Ranking"
             >
               <mat-icon
                 aria-hidden="false"
@@ -86,9 +85,7 @@
             <div
               *ngIf="item.rank_change.type == 3"
               class="d-flex justify-content-center"
-              routerLink="/graph/{{ item.ImageID }}"
-              style="cursor: pointer; position: relative"
-              matTooltip="View Graph"
+              matTooltip="Ranking"
             >
               <mat-icon
                 aria-hidden="false"

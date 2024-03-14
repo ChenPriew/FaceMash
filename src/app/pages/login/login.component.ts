@@ -36,23 +36,34 @@ export class LoginComponent implements OnInit {
   }
 
   async login(userName: HTMLInputElement, password: HTMLInputElement) {
-    this.isLoad = true;
     const body = {
       username: userName.value,
       password: password.value,
     };
-    let temp = (await this.userService.postLogin(body)) as LoginRes;
-    localStorage.setItem('uid', JSON.stringify(temp.userId));
-    if (temp.message == 'Login successful') {
-      this.router.navigate(['/']);
-    } else {
-      this.isLoad = false;
+    if (!userName.value || !password.value) {
+      console.log(true);
+
       Swal.fire({
         title: 'Error',
-        text: 'Invalid username or password',
+        text: 'Please input Username and Password',
         icon: 'error',
         confirmButtonText: 'Try Again',
       });
+    } else {
+      this.isLoad = true;
+      let temp = (await this.userService.postLogin(body)) as LoginRes;
+      if (temp.message == 'Login successful') {
+        localStorage.setItem('uid', JSON.stringify(temp.userId));
+        this.router.navigate(['/']);
+      } else {
+        this.isLoad = false;
+        Swal.fire({
+          title: 'Error',
+          text: 'Invalid username or password',
+          icon: 'error',
+          confirmButtonText: 'Try Again',
+        });
+      }
     }
   }
 }

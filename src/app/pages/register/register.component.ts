@@ -40,7 +40,19 @@ export class RegisterComponent implements OnInit {
     password: HTMLInputElement,
     confirmPassword: HTMLInputElement
   ) {
-    if (password.value !== confirmPassword.value) {
+    if (
+      !disName.value ||
+      !userName.value ||
+      password.value == '' ||
+      confirmPassword.value == ''
+    ) {
+      Swal.fire({
+        title: 'Error',
+        text: 'You must fill out all fields',
+        icon: 'error',
+        confirmButtonText: 'Try Again',
+      });
+    } else if (password.value !== confirmPassword.value) {
       Swal.fire({
         title: 'Error',
         text: 'Passwords do not match',
