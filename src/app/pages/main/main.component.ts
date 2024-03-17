@@ -81,14 +81,14 @@ export class MainComponent implements OnInit {
     let body = {};
     if (!localStorage.getItem('uid')) {
       body = {
-        WinImageID: Number(winImg), // Assuming winImg is a string representing a number
-        LoseImageID: Number(loseImg), // Assuming loseImg is a string representing a number
+        WinImageID: Number(winImg),
+        LoseImageID: Number(loseImg),
       };
     } else {
       body = {
-        VoterID: Number(this.uid), // Assuming this.uid is a string representing a number
-        WinImageID: Number(winImg), // Assuming winImg is a string representing a number
-        LoseImageID: Number(loseImg), // Assuming loseImg is a string representing a number
+        VoterID: Number(this.uid),
+        WinImageID: Number(winImg),
+        LoseImageID: Number(loseImg),
       };
     }
 

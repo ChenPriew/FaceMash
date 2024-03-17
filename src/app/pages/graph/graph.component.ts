@@ -17,6 +17,7 @@ import { Location } from '@angular/common';
 export class GraphComponent implements OnInit {
   imgStat: ImgStatRes[] = [];
   id = '';
+  elo_today = '';
 
   constructor(
     private activeatedRoute: ActivatedRoute,
@@ -27,6 +28,8 @@ export class GraphComponent implements OnInit {
   ngOnInit(): void {
     document.body.className = 'login';
     this.id = this.activeatedRoute.snapshot.paramMap.get('id') || '';
+    this.elo_today =
+      this.activeatedRoute.snapshot.queryParamMap.get('elo') || '';
     this.loadData(this.id);
   }
 
@@ -47,6 +50,8 @@ export class GraphComponent implements OnInit {
       labels.push(formattedDate);
       data.push(item.eloScore);
     }
+    labels.push('Today');
+    data.push(this.elo_today);
 
     new Chart('myChart', {
       type: 'line',

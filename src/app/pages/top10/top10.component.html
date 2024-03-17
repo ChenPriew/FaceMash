@@ -33,18 +33,20 @@
               <mat-icon aria-hidden="false" fontIcon="military_tech"></mat-icon>
               <span class="fw-semibold">{{ i + 1 }}</span>
             </div>
-            <div class="d-flex justify-content-center" matTooltip="EloScore">
+            <div
+              class="d-flex justify-content-center"
+              matTooltip="EloScore"
+              routerLink="/graph/{{ item.ImageID }}"
+              [queryParams]="{ elo: item.EloScore }"
+            >
               <mat-icon
                 aria-hidden="false"
                 fontIcon="favorite"
                 color="accent"
               ></mat-icon>
-              <span
-                class="fw-semibold"
-                routerLink="/graph/{{ item.ImageID }}"
-                style="cursor: pointer"
-                >{{ item.EloScore }}</span
-              >
+              <span class="fw-semibold" style="cursor: pointer">{{
+                item.EloScore
+              }}</span>
             </div>
             <div
               *ngIf="item.rank_change.type == 0"
