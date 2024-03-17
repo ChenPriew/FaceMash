@@ -36,6 +36,7 @@
             <div
               class="d-flex justify-content-center"
               matTooltip="EloScore"
+              style="cursor: pointer"
               routerLink="/graph/{{ item.ImageID }}"
               [queryParams]="{ elo: item.EloScore }"
             >
@@ -44,9 +45,7 @@
                 fontIcon="favorite"
                 color="accent"
               ></mat-icon>
-              <span class="fw-semibold" style="cursor: pointer">{{
-                item.EloScore
-              }}</span>
+              <span class="fw-semibold">{{ item.EloScore }}</span>
             </div>
             <div
               *ngIf="item.rank_change.type == 0"

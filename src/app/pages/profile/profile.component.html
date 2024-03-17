@@ -180,18 +180,16 @@
               <div
                 class="d-flex align-items-center justify-content-center mt-2"
                 matTooltip="EloScore"
+                routerLink="/graph/{{ item.ImageID }}"
+                style="cursor: pointer"
+                [queryParams]="{ elo: item.EloScore }"
               >
                 <mat-icon
                   aria-hidden="false"
                   fontIcon="favorite"
                   color="accent"
                 ></mat-icon>
-                <span
-                  class="fw-semibold"
-                  routerLink="/graph/{{ item.ImageID }}"
-                  style="cursor: pointer"
-                  >{{ item.EloScore }}</span
-                >
+                <span class="fw-semibold">{{ item.EloScore }}</span>
               </div>
             </div>
             <ng-template #elseBlock>
