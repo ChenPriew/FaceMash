@@ -140,4 +140,10 @@ export class UserService {
     const response = await lastValueFrom(this.http.get(url));
     return response as ImgStatRes[];
   }
+
+  public async getUsers() {
+    const url = this.constants.API_ENDPOINT + '/users';
+    const response = await lastValueFrom(this.http.get(url));
+    return response as UserRes[];
+  }
 }
