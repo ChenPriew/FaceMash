@@ -100,10 +100,7 @@ export class MainComponent implements OnInit {
       };
     }
 
-    console.log(body);
-
     let temp = (await this.userService.vote(body)) as VoteRes;
-    console.log(temp);
 
     if (temp.message == 'Vote successfully recorded') {
       Swal.fire('Success', 'Vote Success', 'success').then((result) => {
