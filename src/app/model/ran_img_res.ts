@@ -4,4 +4,5 @@ export interface RandomImgRes {
   ImageURL: string;
   EloScore: number;
   UploadDate: Date;
+  display_name: string;
 }

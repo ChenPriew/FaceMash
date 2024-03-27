@@ -58,6 +58,7 @@
                       type="file"
                       id="avatarUpload"
                       (change)="changeAvatar($event)"
+                      accept="image/*"
                       style="display: none"
                     />
                   </div>
@@ -157,6 +158,7 @@
                       type="file"
                       id="fileInput"
                       (change)="changeImg($event, item.ImageID)"
+                      accept="image/*"
                       style="display: none"
                     />
                   </label>

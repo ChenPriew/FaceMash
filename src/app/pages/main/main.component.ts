@@ -6,18 +6,26 @@ import { HeaderComponent } from '../../componemt/header/header.component';
 import { RandomImgRes } from '../../model/ran_img_res';
 import { VoteRes } from '../../model/vote_res';
 import Swal from 'sweetalert2';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogElementsComponent } from '../../components/dialog-elements/dialog-elements.component';
+import { MatTooltip } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-main',
   standalone: true,
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss',
-  imports: [MatCardModule, MatButtonModule, HeaderComponent, CommonModule],
+  imports: [
+    MatCardModule,
+    MatButtonModule,
+    HeaderComponent,
+    CommonModule,
+    RouterModule,
+    MatTooltip,
+  ],
   animations: [
     trigger('slideInLeft', [
       transition(':enter', [

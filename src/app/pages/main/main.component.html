@@ -10,6 +10,15 @@
     <h2 class="fw-bold mb-4 text-center">Vote Page</h2>
     <div *ngIf="!isLoad" class="row text-center">
       <div class="col-5" [@slideInLeft]>
+        <div *ngIf="uid" class="mb-1">
+          <span
+            routerLink="/view_profile/{{ img1.UserID }}"
+            style="cursor: pointer"
+            class="fs-5"
+            matTooltip="View {{ img1.display_name }} Profile"
+            >Upload By {{ img1.display_name }}</span
+          >
+        </div>
         <div style="height: 30rem" class="border border-black">
           <img
             style="object-fit: cover; object-position: center"
@@ -48,6 +57,15 @@
         </div>
       </div>
       <div class="col-5" [@slideInRight]>
+        <div *ngIf="uid" class="mb-1">
+          <span
+            routerLink="/view_profile/{{ img2.UserID }}"
+            style="cursor: pointer"
+            class="fs-5"
+            matTooltip="View {{ img2.display_name }} Profile"
+            >Upload By {{ img2.display_name }}</span
+          >
+        </div>
         <div style="height: 30rem" class="border border-black">
           <img
             style="object-fit: cover; object-position: center"
@@ -81,6 +99,5 @@
   </mat-card>
 </div>
 <div>
-  <br />
   <br />
 </div>

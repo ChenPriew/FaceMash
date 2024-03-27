@@ -1,0 +1,80 @@
+<div
+  class="container h-100 d-flex flex-column justify-content-center align-items-start"
+>
+  <div class="mb-2">
+    <button mat-button (click)="back()" class="fw-bold">
+      <mat-icon aria-hidden="false" fontIcon="arrow_back_ios"></mat-icon>Back
+    </button>
+  </div>
+  <div
+    style="height: auto; min-height: 45rem"
+    class="p-5 shadow-lg bg-white w-100"
+  >
+    <div *ngIf="!isLoad" [@slideInBottom]>
+      <div class="row">
+        <div class="col-4 d-flex justify-content-center">
+          <div style="width: 200px; height: 200px" class="avatar">
+            <img
+              style="object-fit: cover; object-position: center"
+              class="w-100 h-100 rounded-circle"
+              [src]="user.AvatarURL"
+              alt=""
+            />
+          </div>
+        </div>
+        <div class="col-8">
+          <div>
+            <span class="fw-bold fs-2">{{ user.display_name }}</span>
+          </div>
+          <hr />
+          <div style="min-width: 100%" class="d-flex flex-row gap-2 w-auto">
+            <div>
+              <p class="fw-semibold">{{ user.Bio }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr class="my-5" />
+      <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3 text-center">
+        <div *ngFor="let item of userImg" class="col">
+          <div style="height: 18rem" class="w-100 border border-2 border-black">
+            <img
+              style="object-fit: cover; object-position: center"
+              class="w-100 h-100"
+              [src]="item.ImageURL"
+              alt=""
+            />
+          </div>
+          <div
+            class="d-flex align-items-center justify-content-center mt-2"
+            matTooltip="EloScore"
+            routerLink="/graph/{{ item.ImageID }}"
+            style="cursor: pointer"
+            [queryParams]="{ elo: item.EloScore }"
+          >
+            <mat-icon
+              aria-hidden="false"
+              fontIcon="favorite"
+              color="accent"
+            ></mat-icon>
+            <span class="fw-semibold">{{ item.EloScore }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      *ngIf="isLoad"
+      style="height: 40rem"
+      class="d-flex justify-content-center align-items-center"
+    >
+      <img
+        src="https://i.pinimg.com/originals/13/90/75/13907559a21dd41293af7c57a89b3849.gif"
+        alt=""
+      />
+    </div>
+  </div>
+</div>
+<div>
+  <br />
+  <br />
+</div>

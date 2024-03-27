@@ -6,6 +6,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { EditProfileComponent } from './pages/edit-profile/edit-profile.component';
 import { Top10Component } from './pages/top10/top10.component';
 import { GraphComponent } from './pages/graph/graph.component';
+import { ViewProfileComponent } from './pages/view-profile/view-profile.component';
 
 export const routes: Routes = [
   { path: '', component: MainComponent },
@@ -15,4 +16,5 @@ export const routes: Routes = [
   { path: 'edit_profile', component: EditProfileComponent },
   { path: 'top10', component: Top10Component },
   { path: 'graph/:id', component: GraphComponent },
+  { path: 'view_profile/:id', component: ViewProfileComponent },
 ];
