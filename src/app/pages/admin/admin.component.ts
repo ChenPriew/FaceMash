@@ -4,16 +4,25 @@ import { MatButton } from '@angular/material/button';
 import { MatCard } from '@angular/material/card';
 import { UserRes } from '../../model/user_res';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { CoolDownRes } from '../../model/cooldown_res';
 import { FormsModule } from '@angular/forms';
 import { VoteRes } from '../../model/vote_res';
 import Swal from 'sweetalert2';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-admin',
   standalone: true,
-  imports: [MatCard, MatButton, CommonModule, RouterModule, FormsModule],
+  imports: [
+    MatCard,
+    MatButton,
+    CommonModule,
+    RouterModule,
+    FormsModule,
+    MatIcon,
+    MatButton,
+  ],
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.scss',
 })
@@ -23,9 +32,12 @@ export class AdminComponent implements OnInit {
   cooldown!: number;
   old_cooldown!: number;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private router: Router) {}
 
   ngOnInit(): void {
+    if (!localStorage.getItem('uid')) {
+      this.router.navigate(['/']);
+    }
     this.loadUsers();
     this.loadCoolDown();
   }

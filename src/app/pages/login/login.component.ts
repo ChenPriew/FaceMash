@@ -52,7 +52,40 @@ export class LoginComponent implements OnInit {
     } else {
       this.isLoad = true;
       let temp = (await this.userService.postLogin(body)) as LoginRes;
-      if (temp.message == 'Login successful') {
+
+      if (temp.message == 'Login admin successful') {
+        localStorage.setItem('uid', JSON.stringify(temp.userId));
+        const swalHtml = `
+          <div class="d-flex justify-content-center align-items-center gap-3">
+            <div
+              onclick="window.location.href='/'"
+              style="cursor: pointer"
+              class="d-flex flex-column justify-content-center align-items-center"
+            >
+              <img style="width: 20rem" src="../../../assets/img/user.jpg" alt="" />
+              <span class="fw-semibold">USER</span>
+            </div>
+            <div
+              onclick="window.location.href='/admin'"
+              style="cursor: pointer"
+              class="d-flex flex-column justify-content-center align-items-center"
+            >
+              <img style="width: 20rem" src="../../../assets/img/admin.jpg" alt="" />
+              <span class="fw-semibold">ADMIN</span>
+            </div>
+          </div>
+        `;
+
+        Swal.fire({
+          title: 'Choose login Option',
+          html: swalHtml,
+          showConfirmButton: false,
+          width: '800px',
+          customClass: {
+            title: 'fs-2 fw-bold mb-4',
+          },
+        });
+      } else if (temp.message == 'Login successful') {
         localStorage.setItem('uid', JSON.stringify(temp.userId));
         this.router.navigate(['/']);
       } else {

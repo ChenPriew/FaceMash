@@ -1,74 +1,87 @@
-<div class="container bg-white shadow-lg">
-  <div class="mt-5 d-flex justify-content-between p-2">
-    <h1 (click)="page = true" style="cursor: pointer; color: #ff6b6b">
-      Admin Page
-    </h1>
-    <h1 (click)="page = false" style="cursor: pointer; color: #4ecdc4">
-      Setting Systems
-    </h1>
+<div class="container">
+  <div class="mt-5">
+    <button
+      mat-button
+      routerLink="/"
+      style="height: 50px; width: 200px"
+      class="fw-bold"
+    >
+      <mat-icon aria-hidden="false" fontIcon="arrow_back_ios"></mat-icon>Go to
+      User page
+    </button>
   </div>
-
-  <div *ngIf="page" class="p-4">
-    <div *ngFor="let item of users" class="row align-items-center">
-      <div class="col">
-        <img
-          [src]="item.AvatarURL"
-          style="
-            width: 200px;
-            height: 200px;
-            object-fit: cover;
-            object-position: center;
-            border: 4px solid #ffe66d;
-          "
-          class="rounded-circle"
-        />
-      </div>
-      <div class="col">
-        <span class="fs-3 fw-semibold" style="color: #1a535c">{{
-          item.display_name
-        }}</span>
-      </div>
-      <div class="col">
-        <button
-          routerLink="/view_profile/{{ item.UserID }}"
-          mat-raised-button
-          style="background-color: #ff6b6b; color: white"
-        >
-          View More
-        </button>
-      </div>
-      <hr class="my-4" style="border-color: #4ecdc4" />
+  <div class="bg-white shadow-lg">
+    <div class="mt-2 d-flex justify-content-between p-2">
+      <h1 (click)="page = true" style="cursor: pointer; color: #ff6b6b">
+        Admin Page
+      </h1>
+      <h1 (click)="page = false" style="cursor: pointer; color: #4ecdc4">
+        Setting Systems
+      </h1>
     </div>
-  </div>
 
-  <div *ngIf="!page" class="p-4">
-    <form #cooldownForm="ngForm" (ngSubmit)="updateCooldown(cooldown)">
-      <div class="d-flex align-items-center">
-        <label class="fs-5" for="cooldown" style="color: #1a535c"
-          >Set cooldown time:</label
-        >
-        <input
-          style="width: 80px; border: 2px solid #4ecdc4"
-          class="form-control ms-2"
-          id="cooldown"
-          name="cooldown"
-          [(ngModel)]="cooldown"
-          type="number"
-          [min]="1"
-          required
-        />
-        <span class="ms-2 fs-5" style="color: #ff6b6b">second</span>
-        <button
-          type="submit"
-          class="ms-2"
-          mat-stroked-button
-          [disabled]="cooldownForm.invalid || cooldown === old_cooldown"
-          style="color: #1a535c; border-color: #1a535c"
-        >
-          Set Time
-        </button>
+    <div *ngIf="page" class="p-4">
+      <div *ngFor="let item of users" class="row align-items-center">
+        <div class="col">
+          <img
+            [src]="item.AvatarURL"
+            style="
+              width: 200px;
+              height: 200px;
+              object-fit: cover;
+              object-position: center;
+              border: 4px solid #ffe66d;
+            "
+            class="rounded-circle"
+          />
+        </div>
+        <div class="col">
+          <span class="fs-3 fw-semibold" style="color: #1a535c">{{
+            item.display_name
+          }}</span>
+        </div>
+        <div class="col">
+          <button
+            routerLink="/view_profile/{{ item.UserID }}"
+            mat-raised-button
+            style="background-color: #ff6b6b; color: white"
+          >
+            View More
+          </button>
+        </div>
+        <hr class="my-4" style="border-color: #4ecdc4" />
       </div>
-    </form>
-    <br />
+    </div>
+
+    <div *ngIf="!page" class="p-4">
+      <form #cooldownForm="ngForm" (ngSubmit)="updateCooldown(cooldown)">
+        <div class="d-flex align-items-center">
+          <label class="fs-5" for="cooldown" style="color: #1a535c"
+            >Set cooldown time:</label
+          >
+          <input
+            style="width: 80px; border: 2px solid #4ecdc4"
+            class="form-control ms-2"
+            id="cooldown"
+            name="cooldown"
+            [(ngModel)]="cooldown"
+            type="number"
+            [min]="1"
+            required
+          />
+          <span class="ms-2 fs-5" style="color: #ff6b6b">second</span>
+          <button
+            type="submit"
+            class="ms-2"
+            mat-stroked-button
+            [disabled]="cooldownForm.invalid || cooldown === old_cooldown"
+            style="color: #1a535c; border-color: #1a535c"
+          >
+            Set Time
+          </button>
+        </div>
+      </form>
+      <br />
+    </div>
   </div>
 </div>
