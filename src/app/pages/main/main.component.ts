@@ -126,6 +126,7 @@ export class MainComponent implements OnInit {
                   src="${win.ImageURL}"
                   alt=""
                 />
+                <span class="fw-semibold text-success">EloScore ${win.EloScore}</span>
               </div>
             </div>
             <div class="col">
@@ -137,6 +138,7 @@ export class MainComponent implements OnInit {
                   src="${lose.ImageURL}"
                   alt=""
                 />
+                <span class="fw-semibold text-danger">EloScore ${lose.EloScore}</span>
               </div>
             </div>
           </div>
@@ -158,8 +160,8 @@ export class MainComponent implements OnInit {
             <img style="width: 250px" src="../../../assets/img/R.png" alt="" />
           </div>
           <div class="d-flex flex-column justify-content-center align-items-center">
-            <span>Ra = 1011 + 32 * (1 - ${this.Ea}) = ${this.Ra}</span>
-            <span>Rb = 935 + 32 * (0 - ${this.Eb}) = ${this.Rb}</span>
+            <span>Ra = 1011 + 32 * (1 - ${this.Ea}) = <span class="text-success fw-semibold">${this.Ra}</span></span>
+            <span>Rb = 935 + 32 * (0 - ${this.Eb}) = <span class="text-danger fw-semibold">${this.Rb}</span></span>
           </div>
         </div>
       `;
