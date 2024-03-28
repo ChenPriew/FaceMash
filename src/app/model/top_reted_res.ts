@@ -3,6 +3,7 @@ export interface TopReted {
   ImageURL: string;
   EloScore: number;
   display_name: string;
+  UserID: number;
   rank: number;
   rank_change: any;
 }

@@ -45,19 +45,79 @@
               alt=""
             />
           </div>
-          <div
-            class="d-flex align-items-center justify-content-center mt-2"
-            matTooltip="EloScore"
-            routerLink="/graph/{{ item.ImageID }}"
-            style="cursor: pointer"
-            [queryParams]="{ elo: item.EloScore }"
-          >
-            <mat-icon
-              aria-hidden="false"
-              fontIcon="favorite"
-              color="accent"
-            ></mat-icon>
-            <span class="fw-semibold">{{ item.EloScore }}</span>
+          <div class="d-flex justify-content-center align-items-center mt-2">
+            <div
+              class="d-flex align-items-center justify-content-center me-2"
+              matTooltip="EloScore"
+              routerLink="/graph/{{ item.ImageID }}"
+              style="cursor: pointer"
+              [queryParams]="{ elo: item.EloScore }"
+            >
+              <mat-icon
+                aria-hidden="false"
+                fontIcon="favorite"
+                color="accent"
+              ></mat-icon>
+              <span class="fw-semibold">{{ item.EloScore }}</span>
+            </div>
+            <div
+              *ngIf="item.rankChange.type == 0"
+              class="d-flex justify-content-center"
+              matTooltip="Ranking"
+            >
+              <mat-icon
+                aria-hidden="false"
+                fontIcon="trending_down"
+                style="color: red"
+              ></mat-icon>
+              <span class="fw-semibold">{{ item.rankChange.change }}</span>
+            </div>
+            <div
+              *ngIf="item.rankChange.type == 1"
+              class="d-flex justify-content-center"
+              matTooltip="Ranking"
+            >
+              <mat-icon
+                aria-hidden="false"
+                fontIcon="trending_up"
+                style="color: green"
+              ></mat-icon>
+              <span class="fw-semibold">{{ item.rankChange.change }}</span>
+            </div>
+            <div
+              *ngIf="item.rankChange.type == 2"
+              class="d-flex justify-content-center"
+              matTooltip="Ranking"
+            >
+              <mat-icon
+                aria-hidden="false"
+                fontIcon="trending_flat"
+                style="color: black"
+              ></mat-icon>
+              <span class="fw-semibold">{{ item.rankChange.change }}</span>
+            </div>
+            <div
+              *ngIf="item.rankChange.type == 3"
+              class="d-flex justify-content-center"
+              matTooltip="New Upload"
+            >
+              <mat-icon
+                aria-hidden="false"
+                fontIcon="brightness_7"
+                style="color: gold; position: relative; font-size: 26px"
+              ></mat-icon>
+              <span
+                style="
+                  font-size: 8px;
+                  font-weight: bold;
+                  position: absolute;
+                  top: 84.7%;
+                  left: 39%;
+                  transform: translate(-50%, -50%);
+                "
+                >{{ item.rankChange.change }}</span
+              >
+            </div>
           </div>
         </div>
       </div>

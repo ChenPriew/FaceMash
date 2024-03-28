@@ -68,6 +68,31 @@ export class ProfileComponent implements OnInit {
     const temp = (await this.userService.getImgUser(id)) as UserImgRes;
     for (let i = 0; i < temp.userImages.length; i++) {
       this.userImg[i] = temp.userImages[i];
+      if (this.userImg[i].rankChange == 'New') {
+        let temp = {
+          type: 3,
+          change: 'NEW',
+        };
+        this.userImg[i].rankChange = temp;
+      } else if (this.userImg[i].rankChange == '0') {
+        let temp = {
+          type: 2,
+          change: 0,
+        };
+        this.userImg[i].rankChange = temp;
+      } else if (this.userImg[i].rankChange.charAt(0) == '+') {
+        let temp = {
+          type: 1,
+          change: parseInt(this.userImg[i].rankChange.substring(1), 10),
+        };
+        this.userImg[i].rankChange = temp;
+      } else {
+        let temp = {
+          type: 0,
+          change: parseInt(this.userImg[i].rankChange, 10),
+        };
+        this.userImg[i].rankChange = temp;
+      }
     }
     if (temp) {
       this.isLoad = false;

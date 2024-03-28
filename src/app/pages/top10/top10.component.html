@@ -11,6 +11,7 @@
           <div
             matTooltip="View {{ item.display_name }} Profile"
             style="cursor: pointer"
+            routerLink="/view_profile/{{ item.UserID }}"
           >
             <span
               class="fw-bold d-flex justify-content-center align-items-center"
@@ -106,7 +107,7 @@
               >
             </div>
 
-            <div>
+            <!-- <div>
               <button
                 mat-button
                 class="d-flex justify-content-center align-items-center"
@@ -119,7 +120,7 @@
                 ></mat-icon
                 ><span class="fw-semibold">View</span>
               </button>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>

@@ -4,8 +4,10 @@ export interface UserImgRes {
 
 export interface UserImage {
   ImageID: number;
-  UserID: number;
   ImageURL: string;
   EloScore: number;
-  UploadDate: Date;
+  Date: Date;
+  currentRank: number;
+  previousRank: number;
+  rankChange: any;
 }
