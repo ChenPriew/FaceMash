@@ -29,17 +29,30 @@
     </div>
   </div>
   <div *ngIf="!page" class="p-4">
-    <div class="d-flex align-items-center">
-      <label class="fs-5" for="cooldown">Set cooldown time : </label>
-      <input
-        style="width: 80px"
-        class="form-control ms-2"
-        id="cooldown"
-        type="number"
-        value="5"
-        required
-      />
-      <span class="fs-5">second</span>
-    </div>
+    <form #cooldownForm="ngForm" (ngSubmit)="updateCooldown(cooldown)">
+      <div class="d-flex align-items-center">
+        <label class="fs-5" for="cooldown">Set cooldown time : </label>
+        <input
+          style="width: 80px"
+          class="form-control ms-2"
+          id="cooldown"
+          name="cooldown"
+          [(ngModel)]="cooldown"
+          type="number"
+          [min]="1"
+          required
+        />
+        <span class="ms-2 fs-5">second</span>
+        <button
+          type="submit"
+          class="ms-2"
+          mat-stroked-button
+          [disabled]="cooldownForm.invalid || cooldown === old_cooldown"
+        >
+          Set Time
+        </button>
+      </div>
+    </form>
+    <br />
   </div>
 </div>

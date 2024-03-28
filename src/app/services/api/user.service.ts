@@ -9,6 +9,7 @@ import { UserRes } from '../../model/user_res';
 import { UserImgRes } from '../../model/user_img_res';
 import { VoteRes } from '../../model/vote_res';
 import { ImgStatRes } from '../../model/img_stat_res';
+import { CoolDownRes } from '../../model/cooldown_res';
 
 @Injectable({
   providedIn: 'root',
@@ -145,5 +146,23 @@ export class UserService {
     const url = this.constants.API_ENDPOINT + '/users';
     const response = await lastValueFrom(this.http.get(url));
     return response as UserRes[];
+  }
+
+  public async getCoolDown() {
+    const url = this.constants.API_ENDPOINT + '/cooldown';
+    const response = await lastValueFrom(this.http.get(url));
+    return response as CoolDownRes[];
+  }
+
+  public async setCoolDown(option?: any) {
+    const url = this.constants.API_ENDPOINT + '/cooldown';
+
+    try {
+      const response = await lastValueFrom(this.http.put(url, option));
+      return response as VoteRes;
+    } catch (error) {
+      console.error('An error occurred:', error);
+      throw error;
+    }
   }
 }
